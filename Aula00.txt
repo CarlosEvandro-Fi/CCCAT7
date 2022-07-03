@@ -1,0 +1,38 @@
+
+*** instalar o node
+
+*** instalar o nvm
+
+npm init -y
+-> gera o package.json
+
+npm install --global yarn
+-> yarn.lock
+
+yarn add typescript jest @types/jest ts-node ts-jest
+
+*** se global: tsc --init
+
+npx tsc --init
+-> tsconfig.json
+-> descomentar "incremental"
+-> descomentar "outDir" e atribuir "./dist"
+-> no final, colocar:
+"include": [
+	"src",
+	"test"
+]
+
+*** para transpilar
+npx tsc
+
+*** com a config em "scripts" do package.json
+npm run "nome"
+
+*** sem a config em "scripts" do package.json
+npx ts-node src/"nome do arquivo".ts
+
+npx ts-jest config:init
+-> cria o jest.config.js para uso com o node
+
+npx jest
