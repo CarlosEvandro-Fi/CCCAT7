@@ -4,14 +4,14 @@ public sealed class Ride
 {
     private const decimal MINIMUM_FARE = 10.00M;
 
-    public FareCalculator FareCalculator { get; }
+    public IFareCalculator FareCalculator { get; }
 
     private List<Segment> Segments { get; } = new List<Segment>();
 
-    public Ride(FareCalculator fareCalculator)
+    public Ride(IFareCalculator fareCalculator)
     {
         FareCalculator = fareCalculator 
-            ?? throw new Exception($"Informou um '{nameof(Aula01Lib.FareCalculator)}' nulo em '{nameof(Aula01Lib.Ride)}'.");
+            ?? throw new Exception($"Informou um '{nameof(Aula01Lib.IFareCalculator)}' nulo em '{nameof(Aula01Lib.Ride)}'.");
     }
 
     public void AddSegment(Decimal distance, DateTime date)

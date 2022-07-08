@@ -1,14 +1,14 @@
 ﻿namespace Aula01Lib.FareCalculators;
 
-public sealed class SundayFareCalculator : FareCalculator
+public sealed class SundayFareCalculator : IFareCalculator
 {
     private const Decimal FARE = 2.9M;
 
-    public override FareCalculator? Next { get; }
+    public IFareCalculator? Next { get; }
 
-    public SundayFareCalculator(FareCalculator? next) => Next = next;
+    public SundayFareCalculator(IFareCalculator? next) => Next = next;
 
-    public override decimal Calculate(Segment segment)
+    public decimal Calculate(Segment segment)
     {
         if (!segment.IsOvernight() && segment.IsSunday()) return segment.Distance * FARE;
         if (Next is null) throw new Exception("Nenhum Next Fare!");
