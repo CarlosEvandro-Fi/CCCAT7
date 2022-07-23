@@ -50,4 +50,13 @@ public class Order_Tests
         var total = order.GetTotal();
         Assert.Equal(6090, total);
     }
+
+    [Fact]
+    public void Nao_Deve_Criar_Pedido_Com_Item_Duplicado()
+    {
+        var order = new Order("886.634.854-68");
+        order.AddItem(new Item(1, "Guitarra", 1000), 1);
+        Assert.Throws<Exception>(() => order.AddItem(new Item(1, "Guitarra", 1000), 1));
+    }
+
 }
