@@ -17,7 +17,7 @@ public class Dimension
 
     public Decimal GetDensity()
     {
-        // if (GetVolume() == 0) return 0;
+        if (GetVolume() == 0) return 0;
         return Weight / GetVolume();
     }
 

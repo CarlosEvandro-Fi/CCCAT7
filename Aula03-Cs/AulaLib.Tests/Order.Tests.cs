@@ -59,4 +59,15 @@ public class Order_Tests
         Assert.Throws<Exception>(() => order.AddItem(new Item(1, "Guitarra", 1000), 1));
     }
 
+    [Fact]
+    public void Deve_Criar_Pedido_Com_3_Itens_e_Calcular_Frete()
+    {
+        var order = new Order("886.634.854-68");
+        order.AddItem(new Item(1, "Guitarra", 1000, new Dimension(100, 30, 10, 3)), 1);
+        order.AddItem(new Item(2, "Amplificador", 5000, new Dimension(50, 50, 50, 20)), 1);
+        order.AddItem(new Item(3, "Cabo", 30, new Dimension(10, 10, 10, 1)), 3);
+        var total = order.GetTotal();
+        Assert.Equal(6350, total);
+    }
+
 }
