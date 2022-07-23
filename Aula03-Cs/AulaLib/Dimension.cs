@@ -13,6 +13,11 @@ public class Dimension
         Height = height;
         Lenght = lenght;
         Weight = weight;
+
+        if (Width < 0) throw new Exception("Invalid Width!");
+        if (Height < 0) throw new Exception("Invalid Height!");
+        if (Lenght < 0) throw new Exception("Invalid Lenght!");
+        if (Weight < 0) throw new Exception("Invalid Weight!");
     }
 
     public Decimal GetDensity()
