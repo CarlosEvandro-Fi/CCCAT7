@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AulaLib", "AulaLib.csproj", "{A3AF4314-9723-4DDB-A522-D70C2C1DEC71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AulaLib", "AulaLib.csproj", "{A3AF4314-9723-4DDB-A522-D70C2C1DEC71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AulaLib.Tests", "..\AulaLib.Tests\AulaLib.Tests.csproj", "{04B28C4B-4365-4FEE-BE80-8D0D82C39483}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AulaLib.Tests", "..\AulaLib.Tests\AulaLib.Tests.csproj", "{04B28C4B-4365-4FEE-BE80-8D0D82C39483}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

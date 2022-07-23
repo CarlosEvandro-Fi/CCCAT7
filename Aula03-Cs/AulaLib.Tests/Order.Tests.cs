@@ -34,8 +34,20 @@ public class Order_Tests
         order.AddItem(new Item(1, "Guitarra", 1000), 1);
         order.AddItem(new Item(2, "Amplificador", 5000), 1);
         order.AddItem(new Item(3, "Cabo", 30), 3);
-        order.AddCoupon(new Coupon("VALE20", 20));
+        order.AddCoupon(new Coupon("VALE20", 20, DateTime.Now.AddDays(1)));
         var total = order.GetTotal();
         Assert.Equal(4872, total);
+    }
+
+    [Fact]
+    public void Deve_Criar_Pedido_Com_3_Itens_Com_Cupon_Desconto_Expirado()
+    {
+        var order = new Order("886.634.854-68", new DateTime(2022, 03, 10, 10, 0, 0));
+        order.AddItem(new Item(1, "Guitarra", 1000), 1);
+        order.AddItem(new Item(2, "Amplificador", 5000), 1);
+        order.AddItem(new Item(3, "Cabo", 30), 3);
+        order.AddCoupon(new Coupon("VALE20", 20, new DateTime(2022, 03, 01, 10, 0, 0)));
+        var total = order.GetTotal();
+        Assert.Equal(6090, total);
     }
 }
