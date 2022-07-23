@@ -7,6 +7,7 @@ public sealed class Order
     private CPF CPF { get; }
     private DateTime Date { get; }
     private List<OrderItem> OrderItems { get; }
+    public IEnumerable<OrderItem> Items => OrderItems;
     private Decimal Freight { get; set; }
 
     public Order(CPF cpf, DateTime? date = null, Int32 sequence = 1)
