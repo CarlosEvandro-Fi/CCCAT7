@@ -2,17 +2,19 @@
 
 public sealed class Order
 {
-    private CPF CPF { get; }
+    private OrderCode Code { get; }
     private Coupon? Coupon { get; set; }
+    private CPF CPF { get; }
     private DateTime Date { get; }
     private List<OrderItem> OrderItems { get; }
     private Decimal Freight { get; set; }
 
-    public Order(CPF cpf, DateTime? date = null)
+    public Order(CPF cpf, DateTime? date = null, Int32 sequence = 1)
     {
+        Date = date ?? DateTime.Now;
         CPF = cpf;
         OrderItems = new();
-        Date = date ?? DateTime.Now;
+        Code = new OrderCode(Date, sequence);
     }
 
     public void AddItem(Item item, Int32 quantity)
@@ -27,7 +29,9 @@ public sealed class Order
         if (coupon.IsExpired(Date)) return;
         Coupon = coupon;
     }
-    
+
+    public String GetCode() => Code.Value;
+
     public Decimal GetTotal()
     {
         var total = OrderItems.Sum(item => item.GetTotal());

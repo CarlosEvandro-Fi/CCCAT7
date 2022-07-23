@@ -70,4 +70,14 @@ public class Order_Tests
         Assert.Equal(6350, total);
     }
 
+    [Fact]
+    public void Deve_Criar_Pedido_e_Gerar_o_Codigo()
+    {
+        var order = new Order("886.634.854-68", new DateTime(2022, 03, 01, 10, 0 ,0), 1);
+        order.AddItem(new Item(1, "Guitarra", 1000), 1);
+        order.AddItem(new Item(2, "Amplificador", 5000), 1);
+        order.AddItem(new Item(3, "Cabo", 30), 3);
+        var code = order.GetCode();
+        Assert.Equal("202200000001", code);
+    }
 }
