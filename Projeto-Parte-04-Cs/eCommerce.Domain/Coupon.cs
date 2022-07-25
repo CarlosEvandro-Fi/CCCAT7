@@ -1,9 +1,11 @@
-﻿namespace AulaLib;
+﻿namespace eCommerce.Domain;
 
 public sealed class Coupon
 {
     public String Code { get; } = "";
+
     public DateTime ExpireDate { get; }
+
     public Decimal Percentage { get; }
 
     public Coupon(String code, Decimal percentage, DateTime expireDate)

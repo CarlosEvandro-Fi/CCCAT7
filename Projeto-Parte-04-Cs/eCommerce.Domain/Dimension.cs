@@ -1,23 +1,23 @@
-﻿namespace AulaLib;
+﻿namespace eCommerce.Domain;
 
-public class Dimension
+public sealed class Dimension
 {
-    public Decimal Width { get; } // cm
     public Decimal Height { get; } // cm
     public Decimal Lenght { get; } // cm
     public Decimal Weight { get; } // kg
+    public Decimal Width  { get; } // cm
 
     public Dimension(Decimal width = 0, Decimal height = 0, Decimal lenght = 0, Decimal weight = 0)
     {
-        Width = width;
         Height = height;
         Lenght = lenght;
         Weight = weight;
+        Width = width;
 
-        if (Width < 0) throw new Exception("Invalid Width!");
         if (Height < 0) throw new Exception("Invalid Height!");
         if (Lenght < 0) throw new Exception("Invalid Lenght!");
         if (Weight < 0) throw new Exception("Invalid Weight!");
+        if (Width < 0) throw new Exception("Invalid Width!");
     }
 
     public Decimal GetDensity()

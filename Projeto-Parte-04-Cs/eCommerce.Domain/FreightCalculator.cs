@@ -1,6 +1,6 @@
-﻿namespace AulaLib;
+﻿namespace eCommerce.Domain;
 
-public class FreightCalculator
+public sealed class FreightCalculator
 {
     const Decimal MINIMUM_FREIGHT = 10M;
 

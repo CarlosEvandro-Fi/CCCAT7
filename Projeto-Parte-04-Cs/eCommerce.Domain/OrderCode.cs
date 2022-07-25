@@ -1,4 +1,4 @@
-﻿namespace AulaLib;
+﻿namespace eCommerce.Domain;
 
 public class OrderCode
 {

@@ -1,12 +1,12 @@
-﻿namespace AulaLib;
+﻿namespace eCommerce.Domain;
 
-public class Coordinate
+public sealed class Coordinate
 {
     public Double Latitude { get; set; }
     public Double Longitude { get; set; }
 }
 
-public class Distance
+public sealed class Distance
 {
 	public Double GetDistanceBetweenTwoPoints(Coordinate cord1, Coordinate cord2)
 	{
