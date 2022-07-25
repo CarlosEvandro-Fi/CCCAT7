@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eCommerce.Infrastructure.DB;
 
-namespace eCommerce.Infrastructure.Repository.Database
+namespace eCommerce.Infrastructure.Repository.DB;
+
+public sealed class ItemRepositoryDatabase
 {
-    internal class ItemRepositoryDatabase
+    public IConnection Connection { get; }
+
+    public ItemRepositoryDatabase(IConnection connection)
     {
+        Connection = connection;
     }
 }

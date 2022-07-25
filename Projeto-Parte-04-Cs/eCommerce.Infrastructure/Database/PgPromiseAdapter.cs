@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eCommerce.Infrastructure.DB;
 
-namespace eCommerce.Infrastructure.Database
+namespace eCommerce.Infrastructure.DB;
+
+public class PgPromiseAdapter : IConnection
 {
-    internal class PgPromiseAdapter
+    public async Task Close()
     {
+        await Task.CompletedTask;
+    }
+
+    public async Task<T> Query<T>(String statement, params Object[] parameters)
+    {
+        throw new NotImplementedException();
     }
 }

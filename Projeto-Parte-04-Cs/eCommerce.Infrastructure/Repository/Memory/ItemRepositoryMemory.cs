@@ -1,14 +1,9 @@
-﻿namespace eCommerce.Infrastructure.Repository.Memory;
+﻿using eCommerce.Domain;
+
+namespace eCommerce.Infrastructure.Repository.Memory;
 
 public sealed class ItemRepositoryMemory : IItemRepository
 {
-    public Connection Connection { get; }
-
-    public ItemRepositoryMemory(Connection connection)
-    {
-        Connection = connection;
-    }
-
     private readonly List<Item> Items = new()
         {
             new Item(1, "Guitarra", 1000, new Dimension(100, 30, 10, 3)),

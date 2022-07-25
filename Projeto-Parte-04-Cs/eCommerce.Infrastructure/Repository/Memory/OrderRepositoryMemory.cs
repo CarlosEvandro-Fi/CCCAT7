@@ -1,14 +1,9 @@
-﻿namespace eCommerce.Infrastructure.Repository.Memory;
+﻿using eCommerce.Domain;
+
+namespace eCommerce.Infrastructure.Repository.Memory;
 
 public sealed class OrderRepositoryMemory : IOrderRepository
 {
-    public Connection Connection { get; }
-
-    public OrderRepositoryMemory(Connection connection)
-    {
-        Connection = connection;
-    }
-
     private readonly List<Order> Orders = new();
     private readonly List<OrderItem> OrdersItems = new();
     //{
@@ -17,7 +12,7 @@ public sealed class OrderRepositoryMemory : IOrderRepository
     //    new Item(1, "Guitarra", 30, new Dimension(10, 10, 10, 1)),
     //};
 
-    public async Task<int> Count()
+    public async Task<Int32> Count()
     {
         return Orders.Count();
     }
