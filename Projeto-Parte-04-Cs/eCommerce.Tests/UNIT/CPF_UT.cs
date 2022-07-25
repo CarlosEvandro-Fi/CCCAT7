@@ -1,4 +1,6 @@
-﻿namespace AulaLib.Tests;
+﻿using eCommerce.Domain;
+
+namespace eCommerce.Tests;
 
 public class CPF_UT
 {

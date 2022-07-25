@@ -1,4 +1,8 @@
-﻿namespace AulaLib.Tests;
+﻿using eCommerce.Application;
+using eCommerce.Infrastructure.DB;
+using eCommerce.Infrastructure.Repository.DB;
+
+namespace eCommerce.Tests;
 
 public class SimulateFreight_Tests
 {
