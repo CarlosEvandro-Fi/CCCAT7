@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace eCommerce.Infrastructure.CLI;
 
-namespace eCommerce.Infrastructure.CLI
+public sealed class StdinAdapter : IInputDevice
 {
-    internal class StdinAdapter
+    public void OnData(Action<String> callback)
     {
+        throw new NotImplementedException();
     }
 }
