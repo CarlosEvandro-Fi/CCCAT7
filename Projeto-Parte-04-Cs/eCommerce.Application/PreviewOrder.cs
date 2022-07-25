@@ -1,10 +1,10 @@
-﻿namespace AulaLib;
+﻿namespace eCommerce.Application;
 
-public class PreviewOrder
+public sealed class PreviewOrder
 {
-	public ItemRepository ItemRepository { get; }
+	public IItemRepository ItemRepository { get; }
 
-	public PreviewOrder(ItemRepository itemRepository)
+	public PreviewOrder(IItemRepository itemRepository)
 	{
 		ItemRepository = itemRepository;
 	}
@@ -21,13 +21,13 @@ public class PreviewOrder
 		return new Output { Total = total };
 	}
 
-	public class Input
+	public sealed class Input
 	{
 		public String CPF { get; set; } = "";
 		public DateTime Date { get; set; }
 		public (Int32 ItemId, Int32 Quantity)[] OrderItems { get; set; } = Array.Empty<(Int32, Int32)>();
 	}
-	public class Output
+	public sealed class Output
 	{
 		public Decimal Total { get; set; }
 	}
