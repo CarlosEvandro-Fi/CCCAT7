@@ -25,7 +25,7 @@ public sealed class PreviewOrder
 	{
 		public String CPF { get; set; } = "";
 		public DateTime Date { get; set; }
-		public (Int32 ItemId, Int32 Quantity)[] OrderItems { get; set; } = Array.Empty<(Int32, Int32)>();
+		public List<(Int32 ItemId, Int32 Quantity)> OrderItems { get; set; } = new(); // = Array.Empty<(Int32, Int32)>();
 	}
 	public sealed class Output
 	{

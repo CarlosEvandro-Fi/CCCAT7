@@ -22,7 +22,7 @@ public sealed class CLIManager
 		Commands[command] = callback;
 	}
 
-	public async Task<String> execute(String command)
+	public async Task<String> Execute(String command)
 	{
 		var name = command.Split(" ");
 		var @params = command.Replace(name + " ", "");
@@ -32,7 +32,7 @@ public sealed class CLIManager
 
 	private async Task Type(string text)
 	{
-		var output = await this.execute(text);
+		var output = await this.Execute(text);
 		if (!String.IsNullOrWhiteSpace(output)) OutputDevice.Write(output);
 	}
 }

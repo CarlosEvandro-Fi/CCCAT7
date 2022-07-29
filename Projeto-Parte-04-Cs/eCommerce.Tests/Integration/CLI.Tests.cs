@@ -1,4 +1,5 @@
 ﻿using eCommerce.Infrastructure.CLI;
+using eCommerce.Infrastructure.Controller.CLI;
 using eCommerce.Infrastructure.DB;
 
 namespace eCommerce.Tests.Integration;
@@ -16,17 +17,17 @@ public class CLI_Tests
     }
 
     [Fact]
-    public void Deve_Testar_o_CLI()
+    public async void Deve_Testar_o_CLI()
     {
 		var inputDevice = new PlaceboInputDevice(); // { onData: () => { } };
         var outputDevice = new PlacceboOutoutDevice(); // { write: () => { } };
 		var connection = new PgPromiseAdapter();
 		var cliManager = new CLIManager(inputDevice, outputDevice);
-		//new CLIController(cliManager, connection);
-		//await cliManager.execute("cpf 886.634.854-68");
-		//await cliManager.execute("add-item 1 1");
-		//const output = await cliManager.execute("preview");
-		//expect(output).toBe("total: 1030");
-		//await connection.close();
+		new CLIController(cliManager, connection);
+		await cliManager.Execute("cpf 886.634.854-68");
+		await cliManager.Execute("add-item 1 1");
+		var output = await cliManager.Execute("preview");
+        Assert.Equal("Total: 1030,00", output);
+		await connection.Close();
 	}
 }
