@@ -7,12 +7,9 @@ public sealed class ItemRepositoryDatabase : IItemRepository
 {
     private Repository.Memory.ItemRepositoryMemory Memory { get; } = new();
 
-    public IConnection Connection { get; }
+    private IConnection Connection { get; }
 
-    public ItemRepositoryDatabase(IConnection connection)
-    {
-        Connection = connection;
-    }
-
+    public ItemRepositoryDatabase(IConnection connection) => Connection = connection;
+    
     public Task<Item> GetItem(int itemId) => Memory.GetItem(itemId);
 }
