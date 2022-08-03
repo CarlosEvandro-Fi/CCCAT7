@@ -25,8 +25,13 @@ public sealed class PreviewOrder
 	{
 		public String CPF { get; set; } = "";
 		public DateTime Date { get; set; }
-		public List<(Int32 ItemId, Int32 Quantity)> OrderItems { get; set; } = new(); // = Array.Empty<(Int32, Int32)>();
+		public List<InputItem> OrderItems { get; set; } = new(); // = Array.Empty<(Int32, Int32)>();
 	}
+	public sealed class InputItem
+    {
+		public Int32 ItemId { get; set; }
+		public Int32 Quantity { get; set; }
+    }
 	public sealed class Output
 	{
 		public Decimal Total { get; set; }

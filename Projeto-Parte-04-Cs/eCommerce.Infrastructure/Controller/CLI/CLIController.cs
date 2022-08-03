@@ -10,7 +10,7 @@ public sealed class CLIController
     public CLIController(CLIManager cliManager, IConnection connection)
     {
 		var cpf = "";
-        List<(Int32 ItemId, Int32 Quantity)> orderItems = new();
+        List<PreviewOrder.InputItem> orderItems = new();
 
         cliManager.AddCommand("cpf",
             async (string @params) =>
