@@ -2,15 +2,16 @@
 
 public sealed class CLIManager
 {
+    private Dictionary<String, Func<String, Task<String>>> Commands { get; } = new();
+
     private IInputDevice InputDevice { get; }
 
     private IOutputDevice OutputDevice { get; }
 
-    private Dictionary<String, Func<String, Task<String>>> Commands { get; } = new();
-
     public CLIManager(IInputDevice inputDevice, IOutputDevice outputDevice)
     {
 		InputDevice = inputDevice;
+		OutputDevice = outputDevice;
 
 		InputDevice.OnData(async (string text) => {
 			await this.Type(text);

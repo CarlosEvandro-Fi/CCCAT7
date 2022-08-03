@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace eCommerce.Infrastructure.CLI;
 
-namespace eCommerce.Infrastructure.CLI
+public sealed class StdoutAdapter : IOutputDevice
 {
-    internal class StdoutAdapter
+    public void Write(string text)
     {
+        // process.stdout.write(text);
+
+        Console.WriteLine(text);
     }
 }
