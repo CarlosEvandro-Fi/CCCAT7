@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace eCommerce.Infrastructure.HTTP;
 
-namespace eCommerce.Infrastructure.HTTP
+[Obsolete("Implementar")]
+public class ExpressAdapter
 {
-    internal class ExpressAdapter
-    {
-    }
 }

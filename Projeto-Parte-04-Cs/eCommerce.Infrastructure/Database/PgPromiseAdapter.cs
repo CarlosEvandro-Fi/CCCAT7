@@ -2,6 +2,7 @@
 
 namespace eCommerce.Infrastructure.DB;
 
+[Obsolete("Implementar")]
 public class PgPromiseAdapter : IConnection
 {
     public async Task Close()

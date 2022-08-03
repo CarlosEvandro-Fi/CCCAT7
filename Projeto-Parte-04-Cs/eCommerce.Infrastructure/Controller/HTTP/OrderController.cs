@@ -5,6 +5,7 @@ using eCommerce.Infrastructure.Repository.DB;
 
 namespace eCommerce.Infrastructure.Controller.HTTP;
 
+[Obsolete("Implementar")]
 public sealed class OrderController
 {
     public OrderController(IHttp http, IConnection connection)
