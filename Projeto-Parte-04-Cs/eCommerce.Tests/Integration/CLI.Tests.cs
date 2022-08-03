@@ -1,6 +1,6 @@
 ﻿using eCommerce.Infrastructure.CLI;
 using eCommerce.Infrastructure.Controller.CLI;
-using eCommerce.Infrastructure.DB;
+using eCommerce.Infrastructure.Database;
 
 namespace eCommerce.Tests.Integration;
 

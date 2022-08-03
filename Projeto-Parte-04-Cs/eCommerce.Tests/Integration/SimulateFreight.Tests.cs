@@ -1,6 +1,6 @@
 ﻿using eCommerce.Application;
-using eCommerce.Infrastructure.DB;
-using eCommerce.Infrastructure.Repository.DB;
+using eCommerce.Infrastructure.Database;
+using eCommerce.Infrastructure.Repository.Database;
 
 namespace eCommerce.Tests;
 

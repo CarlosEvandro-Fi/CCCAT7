@@ -1,7 +1,7 @@
 ﻿using eCommerce.Domain;
-using eCommerce.Infrastructure.DB;
+using eCommerce.Infrastructure.Database;
 
-namespace eCommerce.Infrastructure.Repository.DB;
+namespace eCommerce.Infrastructure.Repository.Database;
 
 public sealed class ItemRepositoryDatabase : IItemRepository
 {
