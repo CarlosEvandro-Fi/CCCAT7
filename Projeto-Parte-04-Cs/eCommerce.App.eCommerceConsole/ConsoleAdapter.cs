@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using eCommerce.Infrastructure.CLI;
+using System.Diagnostics.CodeAnalysis;
 
-namespace eCommerce.Infrastructure.CLI;
+namespace eCommerce.App.eCommerceConsole;
 
 public sealed class ConsoleAdapter : IInputDevice, IOutputDevice
 {

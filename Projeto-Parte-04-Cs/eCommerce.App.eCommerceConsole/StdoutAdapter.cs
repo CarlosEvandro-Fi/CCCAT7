@@ -1,4 +1,6 @@
-﻿namespace eCommerce.Infrastructure.CLI;
+﻿using eCommerce.Infrastructure.CLI;
+
+namespace eCommerce.App.eCommerceConsole;
 
 public sealed class StdoutAdapter : IOutputDevice
 {

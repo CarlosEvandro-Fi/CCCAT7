@@ -1,4 +1,6 @@
-﻿namespace eCommerce.Infrastructure.CLI;
+﻿using eCommerce.Infrastructure.CLI;
+
+namespace eCommerce.App.eCommerceConsole;
 
 public sealed class StdinAdapter : IInputDevice
 {
@@ -13,7 +15,7 @@ public sealed class StdinAdapter : IInputDevice
 		//     INTERFERÊNCIA DE OUTROS LOCAIS QUE TAMBÉM ESTEJAM EFETUANDO A
 		//     LEITURA DO CONSOLE.
 		//     PESQUISAR UMA FORMA DE LER A ENTRADA DO CONSOLE SEM CAUSAR O
-		//     BLOQUEIO DA FONTE DE ENTRADA!
+		//     BLOQUEIO DA FONTE DE ENTRADA, OU USAR O ConsoleAdapter.
 
 		Task.Factory.StartNew(() =>
 		{
