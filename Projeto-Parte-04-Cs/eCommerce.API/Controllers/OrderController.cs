@@ -1,6 +1,5 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using eCommerce.Infrastructure.Database;
+using eCommerce.Infrastructure.HTTP;
 
 namespace eCommerce.API.Controllers;
 
@@ -9,13 +8,12 @@ namespace eCommerce.API.Controllers;
 public sealed class OrderController : ControllerBase
 {
     [HttpPost("OrderPreview")]
-    public async Task<ActionResult<PreviewOrder.Output>> OrderPreview([FromBody] PreviewOrder.Input input)
+    public async Task<ActionResult<WebApiAdapter.OrderPreviewResponseDTO>> OrderPreview([FromBody] WebApiAdapter.OrderPreviewDTO orderPreviewDTO)
     {
+        var http = new WebApiAdapter();
         var connection = new PgPromiseAdapter();
-        var itemRepository = new ItemRepositoryDatabase(connection);
-        var previewOrder = new PreviewOrder(itemRepository);
-        var output = await previewOrder.Execute(input);
-        await connection.Close();
-        return Ok(output);
+        new Infrastructure.Controller.HTTP.OrderController(http, connection);
+        var orderPreviewResponseDTO = await http.On(orderPreviewDTO);
+        return Ok(orderPreviewResponseDTO);
     }
 }
