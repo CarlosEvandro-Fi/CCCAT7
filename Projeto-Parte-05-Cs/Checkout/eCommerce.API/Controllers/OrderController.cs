@@ -12,8 +12,8 @@ public sealed class OrderController : ControllerBase
     {
         var http = new WebApiAdapter();
         var connection = new PgPromiseAdapter();
-        new Infrastructure.Controller.HTTP.OrderController(http, connection);
-        var orderPreviewResponseDTO = await http.On(orderPreviewDTO);
+        _ = new Infrastructure.Controller.HTTP.OrderController(http, connection);
+        var orderPreviewResponseDTO = await http.OrderPreview(orderPreviewDTO);
         return Ok(orderPreviewResponseDTO);
     }
 }

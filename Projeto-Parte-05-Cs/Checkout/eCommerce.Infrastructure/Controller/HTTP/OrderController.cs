@@ -9,12 +9,13 @@ public sealed class OrderController
 {
     public OrderController(IHTTP http, IConnection connection)
     {
-        http.OrderPreview = async (PreviewOrder.Input input) =>
-        {
-            var itemRepository = new ItemRepositoryDatabase(connection);
-            var previewOrder = new PreviewOrder(itemRepository);
-            var output = await previewOrder.Execute(input);
-            return output;
-        };
+        http.OnOrderPreview(
+            async (input) =>
+            {
+                var itemRepository = new ItemRepositoryDatabase(connection);
+                var previewOrder = new PreviewOrder(itemRepository);
+                var output = await previewOrder.Execute(input);
+                return output;
+            });
     }
 }
