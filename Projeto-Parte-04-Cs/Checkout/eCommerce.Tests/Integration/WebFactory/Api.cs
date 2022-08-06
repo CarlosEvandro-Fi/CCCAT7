@@ -22,7 +22,7 @@ public class Api : WebApplication<eCommerce.API.Program>, IApi, IAsyncLifetime
 
     #endregion
 
-    public HttpClient ApiClienteWithBearerToken(String bearerToken = "")
+    public HttpClient GetApiHttpClient(String bearerToken = "")
     {
         var c = Factory.CreateClient(new WebApplicationFactoryClientOptions
         {
