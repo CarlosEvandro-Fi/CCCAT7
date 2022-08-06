@@ -4,9 +4,17 @@ namespace eCommerce.Infrastructure.Repository.Memory;
 
 public sealed class CityRepositoryMemory : ICityRepository
 {
-    private static readonly List<City> Cities = new();
+	private static readonly List<City> Cities = new()
+	{
+		new City(1, "Florianópolis", -27.5945, -48.5477),
+		new City(2, "Rio de Janeiro", -22.9129, -43.2003),
+	};
 
-	private static readonly List<ZipCode> ZipCodes = new();
+	private static readonly List<ZipCode> ZipCodes = new()
+	{
+		new ZipCode("88015600", 1, "Rua Almirante Lamego", "Centro"),
+		new ZipCode("22060030", 2, "Rua Aires Saldanha", "Copacabana"),
+	};
 
 	public async Task<City> GetByZipcode(String code)
 	{
