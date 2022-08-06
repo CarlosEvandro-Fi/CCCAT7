@@ -2,6 +2,7 @@
 using System.Net.Http.Json;
 using Testing.API.WebFactory;
 using static eCommerce.Application.CalculateFreight;
+using static eCommerce.Infrastructure.HTTP.WebApiAdapter;
 
 namespace eCommerce.Tests.Integration;
 
@@ -31,7 +32,7 @@ public class API_Tests : IClassFixture<Api>
 		};
 		var response = await api.PostAsJsonAsync("api/Freight/CalculateFreight", input, default);
         Assert.True(response.IsSuccessStatusCode);
-        var output = await response.Content.ReadAsStringAsync();
-        Assert.Equal("22.45", output);
+        var output = await response.Content.ReadFromJsonAsync<CalculateFreightResponseDTO>();
+		Assert.Equal(22.45M, output.Total);
     }
 }

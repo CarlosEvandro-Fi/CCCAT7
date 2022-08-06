@@ -1,5 +1,6 @@
 ﻿using eCommerce.Infrastructure.Database;
 using eCommerce.Infrastructure.HTTP;
+using static eCommerce.Infrastructure.HTTP.WebApiAdapter;
 
 namespace eCommerce.API.Controllers;
 
@@ -18,7 +19,7 @@ public sealed class FreightController : ControllerBase
     }
 
     [HttpPost("CalculateFreight")]
-    public async Task<ActionResult<Decimal>> CalculateFreight([FromBody] WebApiAdapter.CalculateFreightDTO data)
+    public async Task<ActionResult<CalculateFreightResponseDTO>> CalculateFreight([FromBody] WebApiAdapter.CalculateFreightDTO data)
     {
         var total = await WebApiAdapter.CalculateFreight(data);
         return Ok(total);

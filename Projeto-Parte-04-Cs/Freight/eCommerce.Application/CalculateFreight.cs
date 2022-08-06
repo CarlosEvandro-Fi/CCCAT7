@@ -24,7 +24,7 @@ public sealed class CalculateFreight
 	{
 		public String From { get; set; } = "";
 		public String To { get; set; } = "";
-		public IEnumerable<OrderItem> OrderItems { get; set; } = Array.Empty<OrderItem>();
+		public List<OrderItem> OrderItems { get; set; } = new();
 	}
 
 	public sealed class OrderItem

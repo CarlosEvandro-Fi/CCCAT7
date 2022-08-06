@@ -13,7 +13,7 @@ public sealed class WebApiAdapter : IHTTP
 
     void IHTTP.OnCalculateFreight(Func<CalculateFreight.Input, Task<CalculateFreight.Output>> on) => OnCalculateFreightFunction = on;
 
-    public async Task<Decimal> CalculateFreight(CalculateFreightDTO info)
+    public async Task<CalculateFreightResponseDTO> CalculateFreight(CalculateFreightDTO info)
     {
         if (OnCalculateFreightFunction is null) throw new Exception("Configure o CalculateFreight");
 
@@ -33,7 +33,7 @@ public sealed class WebApiAdapter : IHTTP
 
         var output = await OnCalculateFreightFunction.Invoke(input);
 
-        return output.Total;
+        return new CalculateFreightResponseDTO { Total = output.Total };
     }
 
     public sealed class CalculateFreightDTO
@@ -48,5 +48,10 @@ public sealed class WebApiAdapter : IHTTP
         public Double Density { get; set; }
         public Int32 Quantity { get; set; }
         public Double Volume { get; set; }
+    }
+
+    public sealed class CalculateFreightResponseDTO
+    {
+        public Decimal Total { get; set; }
     }
 }
