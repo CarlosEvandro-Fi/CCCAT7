@@ -69,7 +69,7 @@ public class Order_Tests
         order.AddItem(new Item(2, "Amplificador", 5000, new Dimension(50, 50, 50, 20)), 1);
         order.AddItem(new Item(3, "Cabo", 30, new Dimension(10, 10, 10, 1)), 3);
         var total = order.GetTotal();
-        Assert.Equal(6350, total);
+        Assert.Equal(6090, total);
     }
 
     [Fact]

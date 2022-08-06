@@ -27,7 +27,7 @@ public class CLI_Tests
 		await cliManager.Execute("cpf 886.634.854-68");
 		await cliManager.Execute("add-item 1 1");
 		var output = await cliManager.Execute("preview");
-        Assert.Equal("Total: 1030,00", output);
+        Assert.Equal("Total: 1000", output);
 		await connection.Close();
 	}
 }

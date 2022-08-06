@@ -1,4 +1,5 @@
 ﻿using eCommerce.Application;
+using eCommerce.Application.Gateway;
 using eCommerce.Infrastructure.Database;
 using eCommerce.Infrastructure.Repository.Database;
 
@@ -11,18 +12,30 @@ public class SimulateFreight_Tests
     {
 		var connection = new PgPromiseAdapter();
 		var itemRepository = new ItemRepositoryDatabase(connection);
-		var simulateFreight = new SimulateFreight(itemRepository);
+		// var calculateFreightGateway = new CalculateFreightHttpGateway();
+		var calculateFreightGateway = new CalculateFreightGatewayFake();
+		var simulateFreight = new SimulateFreight(itemRepository, calculateFreightGateway);
 		var output = await simulateFreight.Execute(
 			new SimulateFreight.Input()
 			{
-				OrderItems = new (Int32 ItemId, Int32 Quantity)[]
+				From = "22060030",
+				To = "88015600",
+				OrderItems = new List<SimulateFreight.OrderItem>
 				{
-						new(1, 1),
-						new(2, 1),
-						new(3, 3)
+					new SimulateFreight.OrderItem { ItemId = 1, Quantity = 1 },
+					new SimulateFreight.OrderItem { ItemId = 2, Quantity = 1 },
+					new SimulateFreight.OrderItem { ItemId = 3, Quantity = 3 },
 				},
 			});
-		Assert.Equal(260, output.Total);
+		Assert.Equal(202.09M, output.Total);
 		await connection.Close();
+
 	}
+    internal class CalculateFreightGatewayFake : ICalculateFreightGateway
+    {
+        public async Task<ICalculateFreightGateway.Output> Calculate(ICalculateFreightGateway.Input input)
+        {
+			return new ICalculateFreightGateway.Output() { Total = 202.09M };
+        }
+    }
 }

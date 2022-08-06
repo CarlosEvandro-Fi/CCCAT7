@@ -22,7 +22,6 @@ public sealed class Order
     {
         if (OrderItems.Any(orderItem => orderItem.ItemId == item.ItemId)) throw new Exception("Duplicated Item.");
         OrderItems.Add(new OrderItem(item.ItemId, item.Price, quantity));
-        Freight += FreightCalculator.Calculate(item) * quantity;
     }
 
     public void AddCoupon(Coupon coupon)

@@ -29,6 +29,6 @@ public class API_Tests : IClassFixture<Api>
         Assert.True(response.IsSuccessStatusCode);
         PreviewOrder.Output? output = await response.Content.ReadFromJsonAsync<PreviewOrder.Output>();
         Assert.NotNull(output);
-        Assert.Equal(6350, output.Total);
+        Assert.Equal(6090, output.Total);
     }
 }

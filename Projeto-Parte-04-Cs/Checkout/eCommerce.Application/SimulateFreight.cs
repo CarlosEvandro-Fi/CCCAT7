@@ -1,28 +1,44 @@
-﻿namespace eCommerce.Application;
+﻿using eCommerce.Application.Gateway;
+
+namespace eCommerce.Application;
 
 public sealed class SimulateFreight
 {
+	public ICalculateFreightGateway CalculateFreightGateway { get; }
+
 	public IItemRepository ItemRepository { get; }
 
-	public SimulateFreight(IItemRepository itemRepository)
+	public SimulateFreight(IItemRepository itemRepository, ICalculateFreightGateway calculateFreightGateway)
 	{
 		ItemRepository = itemRepository;
+		CalculateFreightGateway = calculateFreightGateway;
 	}
 
 	public async Task<Output> Execute(Input input)
 	{
-		decimal total = 0;
-		foreach (var orderItem in input.OrderItems) {
-			var item = await this.ItemRepository.GetItem(orderItem.ItemId);
-			total += FreightCalculator.Calculate(item) * orderItem.Quantity;
+		var orderItems = new List<ICalculateFreightGateway.OrderItem>();
+		foreach (var orderItem in input.OrderItems)
+		{
+			var item = await ItemRepository.GetItem(orderItem.ItemId);
+			orderItems.Add(new() { Volume = item.GetVolume(), Density = item.GetDensity(), Quantity = orderItem.Quantity });
 		}
-		return new Output { Total = total };
+		var output = await CalculateFreightGateway.Calculate(new ICalculateFreightGateway.Input { From = input.From, To = input.To, OrderItems = orderItems });
+		return new Output { Total = output.Total };
 	}
 
 	public sealed class Input
 	{
-		public (Int32 ItemId, Int32 Quantity)[] OrderItems { get; set; } = Array.Empty<(Int32, Int32)>();
+		public String From { get; set; } = "";
+		public String To { get; set; } = "";
+		public IEnumerable<OrderItem> OrderItems { get; set; } = Array.Empty<OrderItem>();
 	}
+
+	public sealed class OrderItem
+	{
+		public Int32 ItemId { get; set; }
+		public Int32 Quantity { get; set; }
+	}
+
 	public sealed class Output
 	{
 		public Decimal Total { get; set; }
