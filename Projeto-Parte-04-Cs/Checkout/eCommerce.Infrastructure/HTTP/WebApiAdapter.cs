@@ -21,7 +21,7 @@ public sealed class WebApiAdapter : IHTTP
 
         foreach (var increment in increments)
         {
-            inputs.Add(new Application.DecrementStock.Input() { ItemId = increment.ItemId, Quantity = increment.ItemId });
+            inputs.Add(new Application.DecrementStock.Input() { ItemId = increment.ItemId, Quantity = increment.Quantity });
         }
 
         await OnDecrementStockFunction.Invoke(inputs);
@@ -47,7 +47,7 @@ public sealed class WebApiAdapter : IHTTP
 
         foreach (var increment in increments)
         {
-            inputs.Add(new Application.IncrementStock.Input() { ItemId = increment.ItemId, Quantity = increment.ItemId });
+            inputs.Add(new Application.IncrementStock.Input() { ItemId = increment.ItemId, Quantity = increment.Quantity });
         }
 
         await OnIncrementStockFunction.Invoke(inputs);

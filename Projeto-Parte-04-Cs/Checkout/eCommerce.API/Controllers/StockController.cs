@@ -14,7 +14,8 @@ public sealed class StockController : ControllerBase
     public StockController()
     {
         var http = new WebApiAdapter();
-        var stockEntryRepository = new StockEntryRepositoryDatabase();
+        var connection = new PgPromiseAdapter();
+        var stockEntryRepository = new StockEntryRepositoryDatabase(connection);
         var incrementStoke = new IncrementStock(stockEntryRepository);
         var decrementStoke = new DecrementStock(stockEntryRepository);
         var getStock = new GetStock(stockEntryRepository);
