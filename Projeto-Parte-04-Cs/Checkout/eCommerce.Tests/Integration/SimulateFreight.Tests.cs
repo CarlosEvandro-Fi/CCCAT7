@@ -13,8 +13,8 @@ public class SimulateFreight_Tests
     {
 		var connection = new PgPromiseAdapter();
 		var itemRepository = new ItemRepositoryDatabase(connection);
-		var calculateFreightGateway = new CalculateFreightHttpGateway();
-		// var calculateFreightGateway = new CalculateFreightGatewayFake();
+		// var calculateFreightGateway = new CalculateFreightHttpGateway();
+		var calculateFreightGateway = new CalculateFreightGatewayFake();
 		var simulateFreight = new SimulateFreight(itemRepository, calculateFreightGateway);
 		var output = await simulateFreight.Execute(
 			new SimulateFreight.Input()
