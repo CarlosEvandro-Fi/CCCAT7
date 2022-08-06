@@ -10,11 +10,11 @@ public sealed class FreightController
     public FreightController(IHTTP http, IConnection connection)
     {
         http.OnCalculateFreight(
-            async (inputs) =>
+            async (input) =>
             {
                 var cityRepository = new CityRepositoryDatabase(connection);
                 var calculateFreight = new CalculateFreight(cityRepository);
-                var output = await calculateFreight.Execute(inputs);
+                var output = await calculateFreight.Execute(input);
                 return output;
             });
     }
