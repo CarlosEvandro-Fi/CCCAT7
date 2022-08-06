@@ -13,9 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Tests", "eCommerc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{23079040-E0AE-42EE-BE08-A3B5D552CC97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.App.eCommerceConsole", "eCommerce.App.eCommerceConsole\eCommerce.App.eCommerceConsole.csproj", "{C3759CA3-8099-4733-B31E-9D4EEB7EDE64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.App.eCommerceConsole", "eCommerce.App.eCommerceConsole\eCommerce.App.eCommerceConsole.csproj", "{C3759CA3-8099-4733-B31E-9D4EEB7EDE64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.API", "eCommerce.API\eCommerce.API.csproj", "{CADAE62E-B5AC-41C8-9E28-7909E7A12048}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.API", "eCommerce.API\eCommerce.API.csproj", "{CADAE62E-B5AC-41C8-9E28-7909E7A12048}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eCommerce.Stock", "eCommerce.Stock", "{699F9C5E-46F7-4C55-9C86-7B2A8E57930B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eCommerce.Freight", "eCommerce.Freight", "{54DE4AD4-85BB-404F-9A6A-49931117F756}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eCommerce.Checkout", "eCommerce.Checkout", "{4A84CB55-A268-4184-AC25-3F3B18E46BF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
