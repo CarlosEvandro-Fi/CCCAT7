@@ -1,6 +1,6 @@
-﻿using eCommerce.Domain;
+﻿using ECommerce.Stock.Domain;
 
-namespace eCommerce.Infrastructure.Repository.Memory;
+namespace ECommerce.Stock.Infrastructure.Repository.Memory;
 
 public sealed class StockEntryRepositoryMemory : IStockEntryRepository
 {

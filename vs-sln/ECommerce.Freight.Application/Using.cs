@@ -1,1 +1,1 @@
-﻿global using eCommerce.Domain;
+﻿global using ECommerce.Freight.Domain;

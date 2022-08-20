@@ -1,9 +1,9 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.HTTP;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Stock.Application;
+using ECommerce.Stock.Infrastructure.Database;
+using ECommerce.Stock.Infrastructure.HTTP;
+using ECommerce.Stock.Infrastructure.Repository.Database;
 
-namespace eCommerce.API.Controllers;
+namespace ECommerce.Stock.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -19,7 +19,7 @@ public sealed class StockController : ControllerBase
         var incrementStoke = new IncrementStock(stockEntryRepository);
         var decrementStoke = new DecrementStock(stockEntryRepository);
         var getStock = new GetStock(stockEntryRepository);
-        _ = new eCommerce.Infrastructure.Controller.StockController(http, incrementStoke, decrementStoke, getStock);
+        _ = new ECommerce.Stock.Infrastructure.Controller.StockController(http, incrementStoke, decrementStoke, getStock);
         WebApiAdapter = http;
     }
 

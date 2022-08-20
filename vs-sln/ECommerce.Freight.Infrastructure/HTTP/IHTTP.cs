@@ -1,6 +1,6 @@
-﻿using eCommerce.Application;
+﻿using ECommerce.Freight.Application;
 
-namespace eCommerce.Infrastructure.HTTP;
+namespace ECommerce.Freight.Infrastructure.HTTP;
 
 public interface IHTTP
 {

@@ -1,6 +1,6 @@
-﻿using eCommerce.Domain;
+﻿using ECommerce.Checkout.Domain;
 
-namespace eCommerce.Tests;
+namespace ECommerce.Checkout.Tests;
 
 public class OrderCode_Tests
 {

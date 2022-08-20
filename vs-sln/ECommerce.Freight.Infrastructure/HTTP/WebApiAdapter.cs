@@ -1,9 +1,9 @@
 ﻿// *** ESSA CLASSE TOMA LUGAR DO ExpressAdapter
 
-using eCommerce.Application;
-using static eCommerce.Application.CalculateFreight;
+using ECommerce.Freight.Application;
+using static ECommerce.Freight.Application.CalculateFreight;
 
-namespace eCommerce.Infrastructure.HTTP;
+namespace ECommerce.Freight.Infrastructure.HTTP;
 
 public sealed class WebApiAdapter : IHTTP
 {

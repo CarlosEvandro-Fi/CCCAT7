@@ -1,6 +1,6 @@
-﻿using eCommerce.Infrastructure.CLI;
-using eCommerce.Infrastructure.Controller.CLI;
-using eCommerce.Infrastructure.Database;
+﻿using ECommerce.Checkout.Infrastructure.CLI;
+using ECommerce.Checkout.Infrastructure.Controller.CLI;
+using ECommerce.Checkout.Infrastructure.Database;
 
 namespace eCommerce.App.eCommerceConsole;
 

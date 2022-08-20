@@ -1,6 +1,6 @@
-﻿using eCommerce.Application.Gateway;
+﻿using ECommerce.Checkout.Application.Gateway;
 
-namespace eCommerce.Application;
+namespace ECommerce.Checkout.Application;
 
 public sealed class SimulateFreight
 {

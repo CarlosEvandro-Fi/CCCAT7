@@ -1,6 +1,6 @@
 ﻿// *** LEIA O PROBLEMA RELATADO NO StdinAdapter.
 
-//namespace eCommerce.Infrastructure.CLI;
+//namespace ECommerce.Checkout.Infrastructure.CLI;
 
 //public sealed class StdoutAdapter : IOutputDevice
 //{

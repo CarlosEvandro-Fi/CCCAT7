@@ -1,6 +1,6 @@
-﻿using eCommerce.Infrastructure.Database;
+﻿using ECommerce.Checkout.Infrastructure.Database;
 
-namespace eCommerce.Infrastructure.Database;
+namespace ECommerce.Checkout.Infrastructure.Database;
 
 [Obsolete("Implementar")]
 public class PgPromiseAdapter : IConnection

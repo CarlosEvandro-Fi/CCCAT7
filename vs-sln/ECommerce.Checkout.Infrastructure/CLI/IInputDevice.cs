@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Infrastructure.CLI;
+﻿namespace ECommerce.Checkout.Infrastructure.CLI;
 
 public interface IInputDevice
 {

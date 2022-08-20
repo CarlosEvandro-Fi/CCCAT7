@@ -1,8 +1,8 @@
-﻿using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.HTTP;
-using static eCommerce.Infrastructure.HTTP.WebApiAdapter;
+﻿using ECommerce.Freight.Infrastructure.Database;
+using ECommerce.Freight.Infrastructure.HTTP;
+using static ECommerce.Freight.Infrastructure.HTTP.WebApiAdapter;
 
-namespace eCommerce.API.Controllers;
+namespace ECommerce.Freight.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -14,7 +14,7 @@ public sealed class FreightController : ControllerBase
     {
         var http = new WebApiAdapter();
         var connection = new PgPromiseAdapter();
-        _ = new eCommerce.Infrastructure.Controller.FreightController(http, connection);
+        _ = new ECommerce.Freight.Infrastructure.Controller.FreightController(http, connection);
         WebApiAdapter = http;
     }
 

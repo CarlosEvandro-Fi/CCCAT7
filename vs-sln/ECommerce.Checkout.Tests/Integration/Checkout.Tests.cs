@@ -1,8 +1,8 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Checkout.Application;
+using ECommerce.Checkout.Infrastructure.Database;
+using ECommerce.Checkout.Infrastructure.Repository.Database;
 
-namespace eCommerce.Tests;
+namespace ECommerce.Checkout.Tests;
 
 public class Checkout_Tests
 {
@@ -13,9 +13,9 @@ public class Checkout_Tests
 		var itemRepository = new ItemRepositoryDatabase(connection);
 		var orderRepository = new OrderRepositoryDatabase(connection);
 		await orderRepository.Clean();
-		var checkout = new Checkout(itemRepository, orderRepository);
+		var checkout = new Checkouting(itemRepository, orderRepository);
 		var output = await checkout.Execute(
-			new Checkout.Input
+			new Checkouting.Input
 			{
 				CPF = "886.634.854-68",
 				OrderItems = new (Int32 ItemId, Int32 Quantity)[]

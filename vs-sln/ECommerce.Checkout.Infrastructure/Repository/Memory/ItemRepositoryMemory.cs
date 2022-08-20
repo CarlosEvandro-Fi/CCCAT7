@@ -1,6 +1,6 @@
-﻿using eCommerce.Domain;
+﻿using ECommerce.Checkout.Domain;
 
-namespace eCommerce.Infrastructure.Repository.Memory;
+namespace ECommerce.Checkout.Infrastructure.Repository.Memory;
 
 public sealed class ItemRepositoryMemory : IItemRepository
 {

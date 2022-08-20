@@ -1,7 +1,7 @@
-﻿using eCommerce.Application.Gateway;
+﻿using ECommerce.Checkout.Application.Gateway;
 using System.Net.Http.Json;
 
-namespace eCommerce.Infrastructure.Gateway
+namespace ECommerce.Checkout.Infrastructure.Gateway
 {
     public sealed class CalculateFreightHttpGateway : ICalculateFreightGateway
     {

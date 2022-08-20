@@ -1,6 +1,6 @@
-﻿using eCommerce.Application;
+﻿using ECommerce.Stock.Application;
 
-namespace eCommerce.Infrastructure.HTTP;
+namespace ECommerce.Stock.Infrastructure.HTTP;
 
 public interface IHTTP
 {

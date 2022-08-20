@@ -1,7 +1,7 @@
-﻿using eCommerce.Domain;
-using eCommerce.Infrastructure.Database;
+﻿using ECommerce.Stock.Domain;
+using ECommerce.Stock.Infrastructure.Database;
 
-namespace eCommerce.Infrastructure.Repository.Database;
+namespace ECommerce.Stock.Infrastructure.Repository.Database;
 
 public sealed class StockEntryRepositoryDatabase : IStockEntryRepository
 {

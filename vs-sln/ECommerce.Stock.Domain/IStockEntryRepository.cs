@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Domain;
+﻿namespace ECommerce.Stock.Domain;
 
 public interface IStockEntryRepository
 {

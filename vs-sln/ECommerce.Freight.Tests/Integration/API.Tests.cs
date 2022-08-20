@@ -1,10 +1,10 @@
-﻿using eCommerce.Application;
+﻿using ECommerce.Freight.Application;
 using System.Net.Http.Json;
 using Testing.API.WebFactory;
-using static eCommerce.Application.CalculateFreight;
-using static eCommerce.Infrastructure.HTTP.WebApiAdapter;
+using static ECommerce.Freight.Application.CalculateFreight;
+using static ECommerce.Freight.Infrastructure.HTTP.WebApiAdapter;
 
-namespace eCommerce.Tests.Integration;
+namespace ECommerce.Freight.Tests.Integration;
 
 public class API_Tests : IClassFixture<Api>
 {

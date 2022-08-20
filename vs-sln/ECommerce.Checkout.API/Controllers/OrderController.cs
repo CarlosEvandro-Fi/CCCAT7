@@ -1,7 +1,7 @@
-﻿using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.HTTP;
+﻿using ECommerce.Checkout.Infrastructure.Database;
+using ECommerce.Checkout.Infrastructure.HTTP;
 
-namespace eCommerce.API.Controllers;
+namespace ECommerce.Checkout.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

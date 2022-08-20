@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "eCommerce.API": {
+    "ECommerce.Stock.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

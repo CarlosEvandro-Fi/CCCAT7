@@ -1,9 +1,9 @@
-﻿using eCommerce.Application;
+﻿using ECommerce.Checkout.Application;
 using Testing.API.WebFactory;
 
 using System.Net.Http.Json;
 
-namespace eCommerce.Tests.Integration;
+namespace ECommerce.Checkout.Tests.Integration;
 
 public class API_Tests : IClassFixture<Api>
 {

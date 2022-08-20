@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Infrastructure.Database
+﻿namespace ECommerce.Stock.Infrastructure.Database
 {
     public interface IConnection
     {

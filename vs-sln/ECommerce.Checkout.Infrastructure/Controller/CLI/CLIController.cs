@@ -1,9 +1,9 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.CLI;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Checkout.Application;
+using ECommerce.Checkout.Infrastructure.CLI;
+using ECommerce.Checkout.Infrastructure.Database;
+using ECommerce.Checkout.Infrastructure.Repository.Database;
 
-namespace eCommerce.Infrastructure.Controller.CLI;
+namespace ECommerce.Checkout.Infrastructure.Controller.CLI;
 
 public sealed class CLIController
 {

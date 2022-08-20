@@ -1,6 +1,6 @@
-﻿using eCommerce.Domain;
+﻿using ECommerce.Freight.Domain;
 
-namespace eCommerce.Infrastructure.Repository.Memory;
+namespace ECommerce.Freight.Infrastructure.Repository.Memory;
 
 public sealed class CityRepositoryMemory : ICityRepository
 {

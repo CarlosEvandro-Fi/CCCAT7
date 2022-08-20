@@ -1,6 +1,6 @@
-﻿using eCommerce.Domain;
+﻿using ECommerce.Stock.Domain;
 
-namespace eCommerce.Tests.UNIT;
+namespace ECommerce.Stock.Tests.UNIT;
 
 public class StockEntry_Tests
 {

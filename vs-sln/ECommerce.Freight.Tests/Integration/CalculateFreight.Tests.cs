@@ -1,9 +1,9 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Repository.Database;
-using static eCommerce.Application.CalculateFreight;
+﻿using ECommerce.Freight.Application;
+using ECommerce.Freight.Infrastructure.Database;
+using ECommerce.Freight.Infrastructure.Repository.Database;
+using static ECommerce.Freight.Application.CalculateFreight;
 
-namespace eCommerce.Tests.Integration;
+namespace ECommerce.Freight.Tests.Integration;
 
 public class CalculateFreight_Tests
 {

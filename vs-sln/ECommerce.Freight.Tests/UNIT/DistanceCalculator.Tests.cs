@@ -1,6 +1,6 @@
-﻿using eCommerce.Domain;
+﻿using ECommerce.Freight.Domain;
 
-namespace eCommerce.Tests.UNIT;
+namespace ECommerce.Freight.Tests.UNIT;
 
 public class DistanceCalculator_Testes
 {

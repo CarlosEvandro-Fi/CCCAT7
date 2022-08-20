@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Domain;
+﻿namespace ECommerce.Freight.Domain;
 
 public interface ICityRepository
 {

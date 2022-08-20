@@ -1,9 +1,9 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.HTTP;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Freight.Application;
+using ECommerce.Freight.Infrastructure.Database;
+using ECommerce.Freight.Infrastructure.HTTP;
+using ECommerce.Freight.Infrastructure.Repository.Database;
 
-namespace eCommerce.Infrastructure.Controller;
+namespace ECommerce.Freight.Infrastructure.Controller;
 
 public sealed class FreightController
 {

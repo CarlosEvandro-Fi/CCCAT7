@@ -1,7 +1,7 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.HTTP;
+﻿using ECommerce.Stock.Application;
+using ECommerce.Stock.Infrastructure.HTTP;
 
-namespace eCommerce.Infrastructure.Controller;
+namespace ECommerce.Stock.Infrastructure.Controller;
 
 public sealed class StockController
 {

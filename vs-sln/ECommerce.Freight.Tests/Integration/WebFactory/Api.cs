@@ -2,9 +2,9 @@
 
 namespace Testing.API.WebFactory;
 
-public class Api : WebApplication<eCommerce.API.Program>, IApi, IAsyncLifetime
+public class Api : WebApplication<ECommerce.Freight.API.Program>, IApi, IAsyncLifetime
 {
-    public Api() : base(new WebApplicationFactory<eCommerce.API.Program>())
+    public Api() : base(new WebApplicationFactory<ECommerce.Freight.API.Program>())
     { }
 
     #region "XUnit IAsyncLifetime"
@@ -37,7 +37,7 @@ public class Api : WebApplication<eCommerce.API.Program>, IApi, IAsyncLifetime
         return c;
     }
 
-    protected override WebApplicationFactory<eCommerce.API.Program> CustomWebApplicationFactory()
+    protected override WebApplicationFactory<ECommerce.Freight.API.Program> CustomWebApplicationFactory()
     {
         return Factory.WithWebHostBuilder(iWebHostBuilder =>
         {

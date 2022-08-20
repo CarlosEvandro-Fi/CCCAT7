@@ -1,10 +1,10 @@
-﻿using eCommerce.Application;
-using eCommerce.Application.Gateway;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Gateway;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Checkout.Application;
+using ECommerce.Checkout.Application.Gateway;
+using ECommerce.Checkout.Infrastructure.Database;
+using ECommerce.Checkout.Infrastructure.Gateway;
+using ECommerce.Checkout.Infrastructure.Repository.Database;
 
-namespace eCommerce.Tests;
+namespace ECommerce.Checkout.Tests;
 
 public class SimulateFreight_Tests
 {

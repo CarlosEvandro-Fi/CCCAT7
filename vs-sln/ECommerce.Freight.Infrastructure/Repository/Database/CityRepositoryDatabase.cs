@@ -1,7 +1,7 @@
-﻿using eCommerce.Domain;
-using eCommerce.Infrastructure.Database;
+﻿using ECommerce.Freight.Domain;
+using ECommerce.Freight.Infrastructure.Database;
 
-namespace eCommerce.Infrastructure.Repository.Database;
+namespace ECommerce.Freight.Infrastructure.Repository.Database;
 
 public sealed class CityRepositoryDatabase : ICityRepository
 {

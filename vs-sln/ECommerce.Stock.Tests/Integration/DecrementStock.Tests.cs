@@ -1,8 +1,8 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Stock.Application;
+using ECommerce.Stock.Infrastructure.Database;
+using ECommerce.Stock.Infrastructure.Repository.Database;
 
-namespace eCommerce.Tests.Integration;
+namespace ECommerce.Stock.Tests.Integration;
 
 public class DecrementStock_Tests
 {

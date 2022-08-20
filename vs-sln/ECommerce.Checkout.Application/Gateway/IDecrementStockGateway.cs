@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Application.Gateway;
+﻿namespace ECommerce.Checkout.Application.Gateway;
 
 public interface IDecrementStockGateway
 {

@@ -1,4 +1,4 @@
-namespace eCommerce.API;
+namespace ECommerce.Freight.API;
 
 public class Program
 {

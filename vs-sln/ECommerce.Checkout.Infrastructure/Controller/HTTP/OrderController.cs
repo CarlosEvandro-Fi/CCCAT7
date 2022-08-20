@@ -1,9 +1,9 @@
-﻿using eCommerce.Application;
-using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.HTTP;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Checkout.Application;
+using ECommerce.Checkout.Infrastructure.Database;
+using ECommerce.Checkout.Infrastructure.HTTP;
+using ECommerce.Checkout.Infrastructure.Repository.Database;
 
-namespace eCommerce.Infrastructure.Controller.HTTP;
+namespace ECommerce.Checkout.Infrastructure.Controller.HTTP;
 
 public sealed class OrderController
 {

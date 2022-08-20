@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Domain;
+﻿namespace ECommerce.Checkout.Domain;
 
 /// <summary>
 /// Cadastro de Pessoa Física.

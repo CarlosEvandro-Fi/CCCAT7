@@ -1,4 +1,4 @@
-namespace eCommerce.API;
+namespace ECommerce.Checkout.API;
 
 public class Program
 {

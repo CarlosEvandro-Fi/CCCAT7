@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Application;
+﻿namespace ECommerce.Checkout.Application;
 
 public sealed class PreviewOrder
 {

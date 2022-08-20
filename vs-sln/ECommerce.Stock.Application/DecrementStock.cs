@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Application;
+﻿namespace ECommerce.Stock.Application;
 
 public sealed class DecrementStock
 {

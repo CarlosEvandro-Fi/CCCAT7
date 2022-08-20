@@ -1,4 +1,4 @@
-namespace eCommerce.API;
+namespace ECommerce.Stock.API;
 
 public class Program
 {

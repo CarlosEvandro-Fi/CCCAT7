@@ -1,10 +1,10 @@
-﻿using eCommerce.Infrastructure.Database;
-using eCommerce.Infrastructure.Repository.Database;
+﻿using ECommerce.Stock.Infrastructure.Database;
+using ECommerce.Stock.Infrastructure.Repository.Database;
 using System.Net.Http.Json;
 using Testing.API.WebFactory;
-using static eCommerce.Infrastructure.HTTP.WebApiAdapter;
+using static ECommerce.Stock.Infrastructure.HTTP.WebApiAdapter;
 
-namespace eCommerce.Tests.Integration;
+namespace ECommerce.Stock.Tests.Integration;
 
 public class API_Tests : IClassFixture<Api>
 {

@@ -4,7 +4,7 @@
 //     PESQUISAR UMA FORMA DE LER A ENTRADA DO CONSOLE SEM CAUSAR O
 //     BLOQUEIO DA FONTE DE ENTRADA, OU USAR O ConsoleAdapter.
 
-//namespace eCommerce.Infrastructure.CLI;
+//namespace ECommerce.Checkout.Infrastructure.CLI;
 
 //public sealed class StdinAdapter : IInputDevice
 //{

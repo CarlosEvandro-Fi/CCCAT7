@@ -1,11 +1,11 @@
-﻿namespace eCommerce.Application;
+﻿namespace ECommerce.Checkout.Application;
 
-public sealed class Checkout
+public sealed class Checkouting
 {
     public IItemRepository ItemRepository { get; }
     public IOrderRepository OrderRepository { get; }
 
-    public Checkout(IItemRepository itemRepository, IOrderRepository orderRepository)
+    public Checkouting(IItemRepository itemRepository, IOrderRepository orderRepository)
     {
         ItemRepository = itemRepository;
         OrderRepository = orderRepository;

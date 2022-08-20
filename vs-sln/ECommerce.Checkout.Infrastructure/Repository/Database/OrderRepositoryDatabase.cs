@@ -1,7 +1,7 @@
-﻿using eCommerce.Domain;
-using eCommerce.Infrastructure.Database;
+﻿using ECommerce.Checkout.Domain;
+using ECommerce.Checkout.Infrastructure.Database;
 
-namespace eCommerce.Infrastructure.Repository.Database;
+namespace ECommerce.Checkout.Infrastructure.Repository.Database;
 
 public sealed class OrderRepositoryDatabase : IOrderRepository
 {
