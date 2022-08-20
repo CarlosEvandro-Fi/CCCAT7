@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eCommerce.Domain\eCommerce.Domain.csproj" />
+    <Compile Remove=".OLD\**" />
+    <EmbeddedResource Remove=".OLD\**" />
+    <None Remove=".OLD\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.Stock.Application\ECommerce.Stock.Application.csproj" />
   </ItemGroup>
 
 </Project>
