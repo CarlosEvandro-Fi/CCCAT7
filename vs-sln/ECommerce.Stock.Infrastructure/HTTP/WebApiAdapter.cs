@@ -1,6 +1,7 @@
 ﻿// *** ESSA CLASSE TOMA LUGAR DO ExpressAdapter
 
 using ECommerce.Stock.Application;
+using ECommerce.Stock.Domain;
 using static ECommerce.Stock.Infrastructure.Controller.StockController;
 
 namespace ECommerce.Stock.Infrastructure.HTTP;
@@ -9,19 +10,19 @@ public sealed class WebApiAdapter : IHTTP
 {
     //  DECREMENT STOCK
 
-    private Func<IEnumerable<DecrementStock.Input>, Task>? OnDecrementStockFunction { get; set; }
+    private Func<IEnumerable<OrderItem>, Task>? OnDecrementStockFunction { get; set; }
 
-    void IHTTP.OnDecrementStock(Func<IEnumerable<DecrementStock.Input>, Task> on) => OnDecrementStockFunction = on;
+    void IHTTP.OnDecrementStock(Func<IEnumerable<OrderItem>, Task> on) => OnDecrementStockFunction = on;
 
     public async Task DecrementStock(IEnumerable<DecrementStockDTO> increments)
     {
         if (OnDecrementStockFunction is null) throw new Exception("Configure o DecrementStock");
 
-        List<DecrementStock.Input> inputs = new();
+        List<OrderItem> inputs = new();
 
         foreach (var increment in increments)
         {
-            inputs.Add(new Application.DecrementStock.Input() { ItemId = increment.ItemId, Quantity = increment.Quantity });
+            inputs.Add(new OrderItem(increment.ItemId, increment.Quantity));
         }
 
         await OnDecrementStockFunction.Invoke(inputs);

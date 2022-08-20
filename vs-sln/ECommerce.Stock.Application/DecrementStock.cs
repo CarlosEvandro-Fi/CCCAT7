@@ -8,20 +8,14 @@ public sealed class DecrementStock
         => StockEntryRepository = stockEntryRepository;
 
 
-    public async Task Execute(IEnumerable<Input> input)
+    public async Task Execute(IEnumerable<OrderItem> input)
     {
-		foreach (var stockEntryData in input)
+		foreach (var orderItem in input)
         {
-			var stockEntries = await StockEntryRepository.ListByIdItem(stockEntryData.ItemId);
+			var stockEntries = await StockEntryRepository.ListByIdItem(orderItem.ItemId);
             var total = StockCalculator.Calculate(stockEntries);
-			if (total < stockEntryData.Quantity) throw new Exception("Insufficient stock");
-            await StockEntryRepository.Save(new StockEntry(stockEntryData.ItemId, Operation.OUT, stockEntryData.Quantity));
+			if (total < orderItem.Quantity) throw new Exception("Insufficient stock");
+            await StockEntryRepository.Save(new StockEntry(orderItem.ItemId, Operation.OUT, orderItem.Quantity));
 		}
 	}
-
-    public class Input
-    {
-        public Int32 ItemId { get; set; }
-        public Int32 Quantity { get; set; }
-    }
 }

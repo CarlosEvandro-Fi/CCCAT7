@@ -11,7 +11,7 @@ public sealed class StockEntryRepositoryMemory : IStockEntryRepository
         StockEntries.Clear();
     }
 
-    public async Task<IEnumerable<StockEntry>> ListByIdItem(int itemId)
+    public async Task<IEnumerable<StockEntry>> ListByIdItem(Int64 itemId)
     {
         return StockEntries.Where(where => where.ItemId == itemId);
     }

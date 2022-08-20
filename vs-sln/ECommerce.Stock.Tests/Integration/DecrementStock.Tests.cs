@@ -1,4 +1,5 @@
 ﻿using ECommerce.Stock.Application;
+using ECommerce.Stock.Domain;
 using ECommerce.Stock.Infrastructure.Database;
 using ECommerce.Stock.Infrastructure.Repository.Database;
 
@@ -15,7 +16,7 @@ public class DecrementStock_Tests
 		var incrementStock = new IncrementStock(stockEntryRepository);
 		await incrementStock.Execute(new List<IncrementStock.Input> { new() { ItemId = 1, Quantity = 10 } });
 		var decrementStock = new DecrementStock(stockEntryRepository);
-		await decrementStock.Execute(new List<DecrementStock.Input> { new() { ItemId = 1, Quantity = 5 } });
+		await decrementStock.Execute(new List<OrderItem> { new(1, 5) });
 		var getStock = new GetStock(stockEntryRepository);
 		var output = await getStock.Execute(1);
 		Assert.Equal(5, output);
@@ -31,7 +32,7 @@ public class DecrementStock_Tests
 		var incrementStock = new IncrementStock(stockEntryRepository);
 		await incrementStock.Execute(new List<IncrementStock.Input> { new() { ItemId = 1, Quantity = 5 } });
 		var decrementStock = new DecrementStock(stockEntryRepository);
-		await Assert.ThrowsAsync<Exception>(async () => await decrementStock.Execute(new List<DecrementStock.Input> { new() { ItemId = 1, Quantity = 10 } }));
+		await Assert.ThrowsAsync<Exception>(async () => await decrementStock.Execute(new List<OrderItem> { new(1, 10) }));
 		await connection.Close();
 	}
 }

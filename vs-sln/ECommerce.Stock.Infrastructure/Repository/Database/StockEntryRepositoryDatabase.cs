@@ -13,7 +13,7 @@ public sealed class StockEntryRepositoryDatabase : IStockEntryRepository
 
     public Task Clean() => Memory.Clean();
 
-    public Task<IEnumerable<StockEntry>> ListByIdItem(Int32 itemId) => Memory.ListByIdItem(itemId);
+    public Task<IEnumerable<StockEntry>> ListByIdItem(Int64 itemId) => Memory.ListByIdItem(itemId);
 
     public Task Save(StockEntry stockEntry) => Memory.Save(stockEntry);
 }
