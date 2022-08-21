@@ -7,7 +7,7 @@ namespace ECommerce.Checkout.Infrastructure.Controller.CLI;
 
 public sealed class CLIController
 {
-    public CLIController(CLIManager cliManager, IConnection connection)
+    public CLIController(CLIManager cliManager, PreviewOrder previewOrder)
     {
 		var cpf = "";
         List<PreviewOrder.InputItem> orderItems = new();
@@ -30,8 +30,6 @@ public sealed class CLIController
         cliManager.AddCommand("preview", 
             async (string s) =>
             {
-                var itemRepository = new ItemRepositoryDatabase(connection);
-                var previewOrder = new PreviewOrder(itemRepository);
                 var input = new PreviewOrder.Input() { CPF = cpf, OrderItems = orderItems };
                 var output = await previewOrder.Execute(input);
                 return $"Total: {output.Total}";

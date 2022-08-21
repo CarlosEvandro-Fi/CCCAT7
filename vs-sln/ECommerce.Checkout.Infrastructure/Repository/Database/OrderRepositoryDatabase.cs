@@ -16,4 +16,6 @@ public sealed class OrderRepositoryDatabase : IOrderRepository
     public Task<Int32> Count() => Memory.Count();
 
     public Task Save(Order order) => Memory.Save(order);
+
+    public Task<Order> GetByGuid(String guid) => Memory.GetByGuid(guid);
 }

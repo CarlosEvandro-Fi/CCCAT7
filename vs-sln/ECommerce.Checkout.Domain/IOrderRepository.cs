@@ -7,4 +7,6 @@ public interface IOrderRepository
     Task Save(Order order);
 
     Task Clean();
+
+    Task<Order> GetByGuid(String guid);
 }

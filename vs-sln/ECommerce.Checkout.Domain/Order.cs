@@ -8,7 +8,8 @@ public sealed class Order
     private DateTime Date { get; }
     private List<OrderItem> OrderItems { get; }
     public IEnumerable<OrderItem> Items => OrderItems;
-    private Decimal Freight { get; set; }
+    public Decimal Freight { get; private set; }
+    public String Guid { get; private set; } = "";
 
     public Order(CPF cpf, DateTime? date = null, Int32 sequence = 1)
     {
@@ -41,5 +42,15 @@ public sealed class Order
         total += Freight;
 
         return total;
+    }
+
+    public void SetFreight(Decimal freight)
+    {
+        Freight = freight;
+    }
+
+    public void SetGuid(String guid)
+    {
+        Guid = guid;
     }
 }

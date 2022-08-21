@@ -6,11 +6,11 @@ public sealed class SimulateFreight
 {
 	public ICalculateFreightGateway CalculateFreightGateway { get; }
 
-	public IItemRepository ItemRepository { get; }
+	public IGetItemGateway GetItemGateway { get; }
 
-	public SimulateFreight(IItemRepository itemRepository, ICalculateFreightGateway calculateFreightGateway)
+	public SimulateFreight(IGetItemGateway getItemGateway, ICalculateFreightGateway calculateFreightGateway)
 	{
-		ItemRepository = itemRepository;
+        GetItemGateway = getItemGateway;
 		CalculateFreightGateway = calculateFreightGateway;
 	}
 
@@ -19,8 +19,8 @@ public sealed class SimulateFreight
 		var orderItems = new List<ICalculateFreightGateway.OrderItem>();
 		foreach (var orderItem in input.OrderItems)
 		{
-			var item = await ItemRepository.GetItem(orderItem.ItemId);
-			orderItems.Add(new() { Volume = item.GetVolume(), Density = item.GetDensity(), Quantity = orderItem.Quantity });
+			var item = await GetItemGateway.Execute(orderItem.ItemId);
+			orderItems.Add(new() { Volume = item.Volume, Density = item.Density, Quantity = orderItem.Quantity });
 		}
 		var output = await CalculateFreightGateway.Calculate(new ICalculateFreightGateway.Input { From = input.From, To = input.To, OrderItems = orderItems });
 		return new Output { Total = output.Total };

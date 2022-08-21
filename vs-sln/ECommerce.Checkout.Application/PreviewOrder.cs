@@ -1,12 +1,14 @@
-﻿namespace ECommerce.Checkout.Application;
+﻿using ECommerce.Checkout.Application.Gateway;
+
+namespace ECommerce.Checkout.Application;
 
 public sealed class PreviewOrder
 {
-	public IItemRepository ItemRepository { get; }
+	public IGetItemGateway GetItemGateway { get; }
 
-	public PreviewOrder(IItemRepository itemRepository)
+	public PreviewOrder(IGetItemGateway getItemGateway)
 	{
-		ItemRepository = itemRepository;
+        GetItemGateway = getItemGateway;
 	}
 
 	public async Task<Output> Execute(Input input)
@@ -14,7 +16,7 @@ public sealed class PreviewOrder
 		var order = new Order(input.CPF);
 		foreach (var orderItem in input.OrderItems)
 		{
-			var item = await this.ItemRepository.GetItem(orderItem.ItemId);
+			var item = await GetItemGateway.Execute(orderItem.ItemId);
 			order.AddItem(item, orderItem.Quantity);
 		}
 		var total = order.GetTotal();

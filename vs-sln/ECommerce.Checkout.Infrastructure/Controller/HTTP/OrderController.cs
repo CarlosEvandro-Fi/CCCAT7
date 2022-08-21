@@ -7,15 +7,19 @@ namespace ECommerce.Checkout.Infrastructure.Controller.HTTP;
 
 public sealed class OrderController
 {
-    public OrderController(IHTTP http, IConnection connection)
+    public OrderController(IHTTP http, PreviewOrder previewOrder, Checkouting checkouting)
     {
         http.OnOrderPreview(
             async (input) =>
             {
-                var itemRepository = new ItemRepositoryDatabase(connection);
-                var previewOrder = new PreviewOrder(itemRepository);
                 var output = await previewOrder.Execute(input);
                 return output;
+            });
+
+        http.OnCheckout(
+            async (input) =>
+            {
+                await checkouting.Execute(input);
             });
     }
 }

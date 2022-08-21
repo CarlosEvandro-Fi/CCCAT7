@@ -31,4 +31,14 @@ public sealed class OrderRepositoryMemory : IOrderRepository
     {
         await Task.CompletedTask;
     }
+
+    public async Task<Order> GetByGuid(String guid)
+    {
+        foreach (var order in Orders)
+        {
+            if (order.Guid == guid) return order;
+        }
+
+        throw new Exception($"Nenhum Order com o Guid: {guid}");
+    }
 }

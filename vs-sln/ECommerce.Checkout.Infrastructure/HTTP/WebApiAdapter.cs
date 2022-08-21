@@ -1,7 +1,7 @@
 ﻿// *** ESSA CLASSE TOMA LUGAR DO ExpressAdapter
 
 using ECommerce.Checkout.Application;
-using static ECommerce.Checkout.Infrastructure.Controller.HTTP.OrderController;
+using static ECommerce.Checkout.Domain.CheckoutCommand;
 
 namespace ECommerce.Checkout.Infrastructure.HTTP;
 
@@ -44,5 +44,22 @@ public sealed class WebApiAdapter : IHTTP
     public class OrderPreviewResponseDTO
     {
         public Decimal Total { get; set; }
+    }
+
+    //
+
+    private Func<CheckoutInput, Task>? OnCheckoutFunction { get; set; }
+
+
+    void IHTTP.OnCheckout(Func<CheckoutInput, Task> on)
+    {
+        OnCheckoutFunction = on;
+    }
+
+    public async Task Checkout(CheckoutInput input)
+    {
+        if (OnCheckoutFunction is null) throw new Exception("Configure o On(OnCheckoutFunction)");
+
+        await OnCheckoutFunction(input);
     }
 }

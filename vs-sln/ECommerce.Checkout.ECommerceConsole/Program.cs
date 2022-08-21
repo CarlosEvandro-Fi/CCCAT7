@@ -1,6 +1,9 @@
-﻿using ECommerce.Checkout.Infrastructure.CLI;
+﻿using ECommerce.Checkout.Application;
+using ECommerce.Checkout.Application.Gateway;
+using ECommerce.Checkout.Infrastructure.CLI;
 using ECommerce.Checkout.Infrastructure.Controller.CLI;
 using ECommerce.Checkout.Infrastructure.Database;
+using ECommerce.Checkout.Infrastructure.Gateway;
 
 namespace eCommerce.App.eCommerceConsole;
 
@@ -19,7 +22,9 @@ internal class Program
         var consoleAdapter = new ConsoleAdapter();
         var connection = new PgPromiseAdapter();
         var cliManager = new CLIManager(consoleAdapter, consoleAdapter);
-        new CLIController(cliManager, connection);
+        var getItemGateway = new GetItemHttpGateway();
+        var previewOrder = new PreviewOrder(getItemGateway);
+        new CLIController(cliManager, previewOrder);
         consoleAdapter.Run();
         await connection.Close();
     }
