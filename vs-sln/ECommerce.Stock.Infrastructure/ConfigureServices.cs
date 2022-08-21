@@ -13,35 +13,12 @@ public static class ConfigureServicesExtension
     public static async Task<IServiceCollection> ConfigureServices(this IServiceCollection services)
     {
         services.AddSingleton<IHTTP, WebApiAdapter>();
-
         services.AddSingleton<IConnection, PgPromiseAdapter>();
-
         services.AddSingleton<IStockEntryRepository, StockEntryRepositoryDatabase>();
-        //(
-        //(provider) => new StockEntryRepositoryDatabase(provider.GetRequiredService<IConnection>())
-        //);
-
         services.AddSingleton<DecrementStock>();
-        //(
-        //(provider) => new DecrementStock(provider.GetRequiredService<IStockEntryRepository>())
-        //);
-
         services.AddSingleton<IncrementStock>();
-        //(
-        //(provider) => new IncrementStock(provider.GetRequiredService<IStockEntryRepository>())
-        //);
-
         services.AddSingleton<IQueue, RabbitMQAdapter>();
-
-        //var connection = new PgPromiseAdapter();
-        //var stockEntryRepositoryDatabase = new StockEntryRepositoryDatabase(connection);
-        //var decrementStock = new DecrementStock(stockEntryRepositoryDatabase);
-        //var queue = new RabbitMQAdapter();
-        //_ = new StockQueue(queue, decrementStock);
-        //await queue.Connect();
-
         services.AddHostedService<StockQueue>();
-
         return services;
     }
 }

@@ -2,20 +2,8 @@
 using ECommerce.Stock.Domain;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace ECommerce.Stock.Infrastructure.Queue;
-
-//public sealed class StockQueue
-//{
-//    public StockQueue(IQueue queue, DecrementStock decrementStock)
-//    {
-//        queue.Consume<OrderPlaced>("OrderPlaced", async (OrderPlaced orderPlaced) =>
-//        {
-//            await decrementStock.Execute(orderPlaced.OrderItems);
-//        });
-//    }
-//}
 
 public sealed class StockQueue : BackgroundService
 {
