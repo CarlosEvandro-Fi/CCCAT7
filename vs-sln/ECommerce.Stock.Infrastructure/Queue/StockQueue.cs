@@ -7,9 +7,9 @@ public sealed class StockQueue
 {
     public StockQueue(IQueue queue, DecrementStock decrementStock)
     {
-		queue.Consume<OrderPlaced>("OrderPlaced", async (OrderPlaced input) =>
+        queue.Consume<OrderPlaced>("OrderPlaced", async (OrderPlaced orderPlaced) =>
         {
-            await decrementStock.Execute(input.OrderItems);
+            await decrementStock.Execute(orderPlaced.OrderItems);
         });
-	}
+    }
 }

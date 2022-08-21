@@ -1,8 +1,10 @@
+using ECommerce.Stock.Infrastructure;
+
 namespace ECommerce.Stock.API;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,8 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        await builder.Services.ConfigureServices();
 
         var app = builder.Build();
 
@@ -25,7 +29,6 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 

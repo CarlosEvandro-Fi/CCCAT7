@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove=".OLD\**" />
-    <EmbeddedResource Remove=".OLD\**" />
-    <None Remove=".OLD\**" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>
