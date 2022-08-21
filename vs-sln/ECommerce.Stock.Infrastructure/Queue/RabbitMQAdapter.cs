@@ -1,51 +1,77 @@
 ﻿using ECommerce.Stock.Domain;
-using System.Threading.Channels;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Text;
 
 namespace ECommerce.Stock.Infrastructure.Queue;
 
 public sealed class RabbitMQAdapter : IQueue
 {
-    //IConnection connection;
+    private IBasicProperties BasicProperties;
+    private IConnection Connection;
+    private IModel Channel;
 
-    public RabbitMQAdapter() {}
-
-    public async Task Connect()
+    public RabbitMQAdapter()
     {
-        //ConnectionFactory factory = new ConnectionFactory();
-        //factory.Uri = new Uri("amqp://localhost");
-        //connection = factory.CreateConnection();
-        await Task.CompletedTask;
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.Uri = new Uri("amqp://localhost");
+        Connection = factory.CreateConnection();
+        Channel = Connection.CreateModel();
+        BasicProperties = Channel.CreateBasicProperties();
     }
 
     public async Task Close()
     {
-	    //connection.Close();
+        Connection?.Close();
         await Task.CompletedTask;
     }
 
-    public async Task Consume<T>(String eventName, Action<T> callback)
+    public async Task Connect()
     {
-        //const channel = await this.connection.createChannel();
-        //await channel.assertQueue(eventName, { durable: true });
-        //await channel.consume(eventName, async function(msg: any) {
-        //    if (msg)
-        //    {
-        //        const input = JSON.parse(msg.content.toString());
-        //        await callback(input);
-        //        channel.ack(msg);
-        //    }
-        //});
+        if (!Connection.IsOpen)
+        {
+
+        }
         await Task.CompletedTask;
     }
 
-    public async Task Publish(DomainEvent domainEvent)
+    public async Task Consume<T>(String eventName, Func<T, Task> callback)
     {
-        //const channel = await this.connection.createChannel();
-        //await channel.assertQueue(domainEvent.name, { durable: true });
-        //channel.sendToQueue(domainEvent.name, Buffer.from(JSON.stringify(domainEvent)));
+        Channel.QueueDeclare(queue: eventName, durable: true);
+
+        var consumer = new AsyncEventingBasicConsumer(Channel);
+
+        consumer.Received += async (model, ea) =>
+        {
+            var message = System.Text.Json.JsonSerializer.Deserialize<T>(ea.Body.Span);
+
+            if (message is null)
+            {
+                // FAZER O QUE?
+            }
+            else
+            {
+                await callback(message);
+                Channel.BasicAck(ea.DeliveryTag, multiple: false);
+            }
+        };
+        Channel.BasicConsume(queue: eventName, autoAck: false, consumer: consumer);
+
         await Task.CompletedTask;
     }
+
+    public void Dispose()
+    {
+        Channel?.Dispose();
+        Connection?.Dispose();
+    }
+
+    public async Task Publish(DomainEvent domainEvent)  
+    {
+        var message = System.Text.Json.JsonSerializer.SerializeToUtf8Bytes(domainEvent, domainEvent.GetType());
+
+        Channel.BasicPublish("", domainEvent.Name, true, BasicProperties, message);
+
+        await Task.CompletedTask;
+    }
+
 }

@@ -2,10 +2,10 @@
 
 namespace ECommerce.Stock.Infrastructure.Queue;
 
-public interface IQueue
+public interface IQueue : IDisposable
 {
-	Task Connect();
 	Task Close();
-	Task Consume<T>(String eventName, Action<T> callback);
+	Task Connect();
+	Task Consume<T>(String eventName, Func<T, Task> callback);
 	Task Publish(DomainEvent domainEvent);
 }
