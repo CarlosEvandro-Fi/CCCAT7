@@ -1,21 +1,36 @@
 ﻿using ECommerce.Checkout.Application;
 using ECommerce.Checkout.Application.Gateway;
-using ECommerce.Checkout.Infrastructure.Database;
-using ECommerce.Checkout.Infrastructure.Gateway;
-using ECommerce.Checkout.Infrastructure.Repository.Database;
+using ECommerce.Checkout.Domain;
 
 namespace ECommerce.Checkout.Tests;
 
 public class SimulateFreight_Tests
 {
+
+    internal sealed class PlaceboGetItemGateway : IGetItemGateway
+    {
+        public async Task<Item> Execute(long itemId)
+        {
+            List<Item> OrdersItems = new()
+            {
+                new Item(1, "Guitarra", 1000, 100, 30, 10, 3, 100, 0.03M),
+                new Item(2, "Amplificador", 5000, 50, 50, 50, 20, 1, 1),
+                new Item(3, "Cabo", 30, 10, 10, 10, 1, 1, 1),
+            };
+
+            return OrdersItems.Where(where => where.ItemId == itemId).FirstOrDefault();
+        }
+    }
+
     [Fact]
     public async Task Deve_Simular_o_Frete()
     {
-		var connection = new PgPromiseAdapter();
-		var itemRepository = new ItemRepositoryDatabase(connection);
-		// var calculateFreightGateway = new CalculateFreightHttpGateway();
-		var calculateFreightGateway = new CalculateFreightGatewayFake();
-		var simulateFreight = new SimulateFreight(itemRepository, calculateFreightGateway);
+        //var connection = new PgPromiseAdapter();
+        // var getItemGateway = new GetItemHttpGateway();
+        var getItemGateway = new PlaceboGetItemGateway();
+        // var calculateFreightGateway = new CalculateFreightHttpGateway();
+        var calculateFreightGateway = new CalculateFreightGatewayFake();
+		var simulateFreight = new SimulateFreight(getItemGateway, calculateFreightGateway);
 		var output = await simulateFreight.Execute(
 			new SimulateFreight.Input()
 			{
@@ -29,8 +44,7 @@ public class SimulateFreight_Tests
 				},
 			});
 		Assert.Equal(202.09M, output.Total);
-		await connection.Close();
-
+		//await connection.Close();
 	}
     internal class CalculateFreightGatewayFake : ICalculateFreightGateway
     {

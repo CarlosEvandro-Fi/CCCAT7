@@ -8,8 +8,8 @@ public sealed class OrderRepositoryMemory : IOrderRepository
     private readonly List<OrderItem> OrdersItems = new();
     //{
     //    new Item(1, "Guitarra", 1000, new Dimension(100, 30, 10, 3)),
-    //    new Item(1, "Guitarra", 5000, new Dimension(50, 50, 50, 20)),
-    //    new Item(1, "Guitarra", 30, new Dimension(10, 10, 10, 1)),
+    //    new Item(2, "Amplificador", 5000, new Dimension(50, 50, 50, 20)),
+    //    new Item(3, "Cabo", 30, new Dimension(10, 10, 10, 1)),
     //};
 
     public async Task<Int32> Count()

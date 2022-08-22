@@ -17,14 +17,14 @@ public sealed class OrderProjectionHandler
 		GetItemGateway = getItemGateway;
 	}
 
-	public async Task Execute(CheckoutInput input)
+	public async Task Execute(string guid /*CheckoutInput input*/)
 	{
-		var order = await OrderQuery.GetByGuid2(input.Guid);
+		var order = await OrderQuery.GetByGuid2(/*input.*/guid);
 		foreach (var orderItem in order.OrderItems)
 		{
 			var item = await GetItemGateway.Execute(orderItem.ItemId);
 			orderItem.Description = item.Description;
 		}
-		await OrderQuery.SaveOrderProjection(input.Guid, order);
+		await OrderQuery.SaveOrderProjection(/*input.*/guid, order);
 	}
 }

@@ -29,7 +29,7 @@ public sealed class CheckoutQueue : BackgroundService
             // command.Input.Date = new Date(input.input.date); // *** ERA PARA CORRIGIR A DATA QUE FICAVA COMO STRING
             await checkoutHandler.Execute(command.Input);
             // outro lugar consumindo este evento
-            await orderProjectionHandler.Execute(command.Input);
+            await orderProjectionHandler.Execute(command.Input.Guid);
         });
 
         // TESTE

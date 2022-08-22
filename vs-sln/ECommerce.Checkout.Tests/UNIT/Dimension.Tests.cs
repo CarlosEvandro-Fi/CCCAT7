@@ -1,27 +1,27 @@
-﻿using ECommerce.Checkout.Domain;
+﻿//using ECommerce.Checkout.Domain;
 
-namespace ECommerce.Checkout.Tests;
+//namespace ECommerce.Checkout.Tests;
 
-public class Dimension_Tests
-{
-    [Fact]
-    public void Nao_Deve_Ter_Dimensoes_Largura_Negativa()
-    {
-        Assert.Throws<Exception>(() => new Dimension(-1, 1, 1, 1));
-    }
-    [Fact]
-    public void Nao_Deve_Ter_Dimensoes_Altura_Negativa()
-    {
-        Assert.Throws<Exception>(() => new Dimension(1, -1, 1, 1));
-    }
-    [Fact]
-    public void Nao_Deve_Ter_Dimensoes_Profundidade_Negativa()
-    {
-        Assert.Throws<Exception>(() => new Dimension(1, 1, -1, 1));
-    }
-    [Fact]
-    public void Nao_Deve_Ter_Dimensoes_Peso_Negativa()
-    {
-        Assert.Throws<Exception>(() => new Dimension(1, 1, 1, -1));
-    }
-}
+//public class Dimension_Tests
+//{
+//    [Fact]
+//    public void Nao_Deve_Ter_Dimensoes_Largura_Negativa()
+//    {
+//        Assert.Throws<Exception>(() => new Dimension(-1, 1, 1, 1));
+//    }
+//    [Fact]
+//    public void Nao_Deve_Ter_Dimensoes_Altura_Negativa()
+//    {
+//        Assert.Throws<Exception>(() => new Dimension(1, -1, 1, 1));
+//    }
+//    [Fact]
+//    public void Nao_Deve_Ter_Dimensoes_Profundidade_Negativa()
+//    {
+//        Assert.Throws<Exception>(() => new Dimension(1, 1, -1, 1));
+//    }
+//    [Fact]
+//    public void Nao_Deve_Ter_Dimensoes_Peso_Negativa()
+//    {
+//        Assert.Throws<Exception>(() => new Dimension(1, 1, 1, -1));
+//    }
+//}

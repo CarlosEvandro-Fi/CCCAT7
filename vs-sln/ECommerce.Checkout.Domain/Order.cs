@@ -22,7 +22,7 @@ public sealed class Order
     public void AddItem(Item item, Int32 quantity)
     {
         if (OrderItems.Any(orderItem => orderItem.ItemId == item.ItemId)) throw new Exception("Duplicated Item.");
-        OrderItems.Add(new OrderItem(item.ItemId, item.Price, quantity));
+        OrderItems.Add(item.CreateOrderItem(quantity));
     }
 
     public void AddCoupon(Coupon coupon)

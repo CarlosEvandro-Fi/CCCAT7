@@ -25,14 +25,14 @@ public sealed class GetItemHttpGateway : IGetItemGateway
 
     private sealed class ItemDTO
     {
-        public String Description { get; }
-        public Int64 ItemId { get; }
-        public Decimal Price { get; }
-        public Decimal Height { get; } // cm
-        public Decimal Lenght { get; } // cm
-        public Decimal Weight { get; } // kg
-        public Decimal Width { get; } // cm
-        public Decimal Density { get; } // kg/m3
-        public Decimal Volume { get; } // m3
+        public String Description { get; set; }
+        public Int64 ItemId { get; set; }
+        public Decimal Price { get; set; }
+        public Decimal Height { get; set; } // cm
+        public Decimal Lenght { get; set; } // cm
+        public Decimal Weight { get; set; } // kg
+        public Decimal Width { get; set; } // cm
+        public Decimal Density { get; set; } // kg/m3
+        public Decimal Volume { get; set; } // m3
     }
 }
