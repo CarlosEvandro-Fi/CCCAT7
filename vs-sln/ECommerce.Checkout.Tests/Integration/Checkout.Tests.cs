@@ -8,9 +8,8 @@ using ECommerce.Checkout.Infrastructure.Query;
 using ECommerce.Checkout.Infrastructure.Repository.Database;
 using System;
 using static ECommerce.Checkout.Domain.CheckoutCommand;
-using static ECommerce.Checkout.Tests.SimulateFreight_Tests;
 
-namespace ECommerce.Checkout.Tests;
+namespace ECommerce.Checkout.Tests.Integration;
 
 public class Checkout_Tests
 {

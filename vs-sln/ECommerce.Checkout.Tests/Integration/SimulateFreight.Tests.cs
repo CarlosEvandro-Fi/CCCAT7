@@ -2,7 +2,7 @@
 using ECommerce.Checkout.Application.Gateway;
 using ECommerce.Checkout.Domain;
 
-namespace ECommerce.Checkout.Tests;
+namespace ECommerce.Checkout.Tests.Integration;
 
 public class SimulateFreight_Tests
 {
