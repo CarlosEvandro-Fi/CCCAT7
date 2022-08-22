@@ -51,7 +51,7 @@ public sealed class OrderQuery : IOrderQuery
         };
     }
 
-    public async Task<OrderDTO> SaveOrderProjection(string guid, object order)
+    public async Task<OrderDTO> SaveOrderProjection(string guid, OrderDTO order)
     {
         //await this.connection.query("insert into ccca.order_projection (guid, data) values ($1, $2)", [guid, order]);
 
