@@ -9,10 +9,13 @@ namespace ECommerce.Stock.API.Controllers;
 [ApiController]
 public sealed class StockController : ControllerBase
 {
+    public IMediator Mediator { get; }
+
     private WebApiAdapter WebApiAdapter { get; }
 
-    public StockController()
+    public StockController(IMediator mediator)
     {
+        Mediator = mediator;
         var http = new WebApiAdapter();
         var connection = new PgPromiseAdapter();
         var stockEntryRepository = new StockEntryRepositoryDatabase(connection);
@@ -40,7 +43,7 @@ public sealed class StockController : ControllerBase
     [HttpGet("GetStock/{ItemId}")]
     public async Task<ActionResult<Int32>> Get([FromRoute(Name = "ItemId")] Int32 itemId)
     {
-        var total = await WebApiAdapter.GetStock(itemId);
-        return Ok(total);
+        var query = new GetStockQuery(itemId);
+        return await Mediator.Send<GetStockQuery, Int32>(query, default);
     }
 }
