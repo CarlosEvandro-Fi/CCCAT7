@@ -4,7 +4,7 @@ namespace ECommerce.Stock.API;
 
 public class Program
 {
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        await builder.Services.ConfigureServices();
+        builder.Services.ConfigureServices();
 
         var app = builder.Build();
 

@@ -21,8 +21,15 @@ public sealed class StockQueue : BackgroundService
     {
         await Queue.Consume<OrderPlaced>("OrderPlaced", async (OrderPlaced orderPlaced) =>
         {
-            var decrementStock = ServiceProvider.GetRequiredService<DecrementStock>();
-            await decrementStock.Execute(orderPlaced.OrderItems);
+            using var scope = ServiceProvider.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            var decremets = new List<DecrementStockDTO>();
+            foreach (var item in orderPlaced.OrderItems)
+            {
+                decremets.Add(new DecrementStockDTO() { ItemId = item.ItemId, Quantity = item.Quantity });
+            }
+            var decrementCommand = new DecrementStockCommand(decremets);
+            await mediator.Send(decrementCommand, default);
         });
 
         // TESTE

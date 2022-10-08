@@ -3,6 +3,9 @@
 public interface IMediator : IQuerySender, ICommandSender
 { }
 
+public interface ICommand
+{ }
+
 public interface ICommand<out TResponse>
 { }
 
@@ -11,9 +14,17 @@ public interface ICommandHandler<in TCommand, TResponse>
 {
     Task<TResponse> Handle(TCommand command, CancellationToken cancellation);
 }
+public interface ICommandHandler<in TCommand>
+    where TCommand : ICommand
+{
+    Task Handle(TCommand command, CancellationToken cancellation);
+}
 
 public interface ICommandSender
 {
+    Task Send<TCommand>(TCommand command, CancellationToken cancellation)
+        where TCommand : ICommand;
+
     Task<TResponse> Send<TCommand, TResponse>(TCommand command, CancellationToken cancellation)
         where TCommand : ICommand<TResponse>;
 }
