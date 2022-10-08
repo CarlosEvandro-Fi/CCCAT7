@@ -1,7 +1,4 @@
 ﻿using ECommerce.Stock.Application;
-using ECommerce.Stock.Infrastructure.Database;
-using ECommerce.Stock.Infrastructure.HTTP;
-using ECommerce.Stock.Infrastructure.Repository.Database;
 
 namespace ECommerce.Stock.API.Controllers;
 
@@ -9,38 +6,29 @@ namespace ECommerce.Stock.API.Controllers;
 [ApiController]
 public sealed class StockController : ControllerBase
 {
-    private WebApiAdapter WebApiAdapter { get; }
+    public IMediator Mediator { get; }
 
-    public StockController()
-    {
-        var http = new WebApiAdapter();
-        var connection = new PgPromiseAdapter();
-        var stockEntryRepository = new StockEntryRepositoryDatabase(connection);
-        var incrementStoke = new IncrementStock(stockEntryRepository);
-        var decrementStoke = new DecrementStock(stockEntryRepository);
-        var getStock = new GetStock(stockEntryRepository);
-        _ = new ECommerce.Stock.Infrastructure.Controller.StockController(http, incrementStoke, decrementStoke, getStock);
-        WebApiAdapter = http;
-    }
+    public StockController(IMediator iMediator) => Mediator = iMediator;
+    
 
     [HttpPost("DecrementStock")]
-    public async Task<IActionResult> Decrement([FromBody] IEnumerable<WebApiAdapter.DecrementStockDTO> decremets)
+    public async Task<IActionResult> Decrement([FromBody] IEnumerable<DecrementStockDTO> decremets)
     {
-        await WebApiAdapter.DecrementStock(decremets);
+        await Mediator.Send(new DecrementStockCommand(decremets), default(CancellationToken));
         return Ok();
     }
 
     [HttpPost("IncrementStock")]
-    public async Task<IActionResult> Increment([FromBody] IEnumerable<WebApiAdapter.IncrementStockDTO> incremets)
+    public async Task<IActionResult> Increment([FromBody] IEnumerable<IncrementStockDTO> incremets)
     {
-        await WebApiAdapter.IncrementStock(incremets);
+        await Mediator.Send(new IncrementStockCommand(incremets), default(CancellationToken));
         return Ok();
     }
 
     [HttpGet("GetStock/{ItemId}")]
     public async Task<ActionResult<Int32>> Get([FromRoute(Name = "ItemId")] Int32 itemId)
     {
-        var total = await WebApiAdapter.GetStock(itemId);
-        return Ok(total);
+        var query = new GetStockQuery(itemId);
+        return await Mediator.Send<GetStockQuery, Int32>(query, default(CancellationToken));
     }
 }

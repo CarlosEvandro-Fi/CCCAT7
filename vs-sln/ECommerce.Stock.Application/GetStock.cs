@@ -4,8 +4,8 @@ public sealed class GetStock
 {
 	public IStockEntryRepository StockEntryRepository { get; }
 
-	public GetStock(IStockEntryRepository stockEntryRepository)
-		=> StockEntryRepository = stockEntryRepository;
+	public GetStock(IStockEntryRepository iStockEntryRepository)
+		=> StockEntryRepository = iStockEntryRepository;
 
 	public async Task<Int32> Execute(Int32 itemId)
 	{

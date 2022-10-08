@@ -21,14 +21,16 @@ public sealed class StockQueue : BackgroundService
     {
         await Queue.Consume<OrderPlaced>("OrderPlaced", async (OrderPlaced orderPlaced) =>
         {
-            var decrementStock = ServiceProvider.GetRequiredService<DecrementStock>();
-            await decrementStock.Execute(orderPlaced.OrderItems);
+            using var scope = ServiceProvider.CreateScope();
+            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+            var decremets = new List<DecrementStockDTO>();
+            foreach (var item in orderPlaced.OrderItems)
+            {
+                decremets.Add(new DecrementStockDTO() { ItemId = item.ItemId, Quantity = item.Quantity });
+            }
+            var decrementCommand = new DecrementStockCommand(decremets);
+            await mediator.Send(decrementCommand, default);
         });
-
-        // TESTE
-        //var IncrementStock = ServiceProvider.GetRequiredService<IncrementStock>();
-        //await IncrementStock.Execute(new IncrementStock.Input[] { new IncrementStock.Input() { ItemId = 1, Quantity = 100 } });
-        //await Queue.Publish(new OrderPlaced("1", new OrderItem[] { new(1, 1) }));
     }
 
     public override async Task StartAsync(CancellationToken cancellationToken)
