@@ -22,6 +22,5 @@ public sealed class DecrementStockCommandHandler : ICommandHandler<DecrementStoc
     public async Task Handle(DecrementStockCommand command, CancellationToken cancellation)
 	{
 		await DecrementStock.Execute(command.Values);
-
     }
 }

@@ -31,11 +31,6 @@ public sealed class StockQueue : BackgroundService
             var decrementCommand = new DecrementStockCommand(decremets);
             await mediator.Send(decrementCommand, default);
         });
-
-        // TESTE
-        //var IncrementStock = ServiceProvider.GetRequiredService<IncrementStock>();
-        //await IncrementStock.Execute(new IncrementStock.Input[] { new IncrementStock.Input() { ItemId = 1, Quantity = 100 } });
-        //await Queue.Publish(new OrderPlaced("1", new OrderItem[] { new(1, 1) }));
     }
 
     public override async Task StartAsync(CancellationToken cancellationToken)
