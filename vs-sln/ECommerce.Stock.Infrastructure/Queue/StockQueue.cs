@@ -22,14 +22,14 @@ public sealed class StockQueue : BackgroundService
         await Queue.Consume<OrderPlaced>("OrderPlaced", async (OrderPlaced orderPlaced) =>
         {
             using var scope = ServiceProvider.CreateScope();
-            var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
             var decremets = new List<DecrementStockDTO>();
             foreach (var item in orderPlaced.OrderItems)
             {
                 decremets.Add(new DecrementStockDTO() { ItemId = item.ItemId, Quantity = item.Quantity });
             }
             var decrementCommand = new DecrementStockCommand(decremets);
-            await mediator.Send(decrementCommand, default);
+			var decrementHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<DecrementStockCommand>>();
+			await decrementHandler.Handle(decrementCommand, default);
         });
     }
 

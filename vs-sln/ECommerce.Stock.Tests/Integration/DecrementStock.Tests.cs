@@ -16,21 +16,23 @@ public class DecrementStock_Tests : IClassFixture<TestingServiceProvider>
         using var scope = TestingServiceProvider.ServiceProvider.CreateScope();
         var stockEntryRepository = scope.ServiceProvider.GetRequiredService<IStockEntryRepository>();
         await stockEntryRepository.Clean();
-        var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
+        var handler = scope.ServiceProvider.GetRequiredService<IQueryHandler<GetStockQuery, Int32>>();
         var incremets = new List<IncrementStockDTO>()
 		{
 			new IncrementStockDTO { ItemId = 1, Quantity = 10 }
         };
 		var incrementCommand = new IncrementStockCommand(incremets);
-		await mediator.Send(incrementCommand, default);
+        var incrementHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<IncrementStockCommand>>();
+		await incrementHandler.Handle(incrementCommand, default);
 		var decremets = new List<DecrementStockDTO>()
 		{
             new DecrementStockDTO { ItemId = 1, Quantity = 5 }
         };
 		var decrementCommand = new DecrementStockCommand(decremets);
-		await mediator.Send(decrementCommand, default);
+		var decrementHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<DecrementStockCommand>>();
+		await decrementHandler.Handle(decrementCommand, default);
 		var getStockQuery = new GetStockQuery(itemId: 1);
-		var stockCount = await mediator.Send<GetStockQuery, Int32>(getStockQuery, default);
+		var stockCount = await handler.Handle(getStockQuery, default);
         Assert.Equal(5, stockCount);
 	}
 
@@ -40,18 +42,19 @@ public class DecrementStock_Tests : IClassFixture<TestingServiceProvider>
         using var scope = TestingServiceProvider.ServiceProvider.CreateScope();
         var stockEntryRepository = scope.ServiceProvider.GetRequiredService<IStockEntryRepository>();
         await stockEntryRepository.Clean();
-        var mediator = scope.ServiceProvider.GetRequiredService<IMediator>();
         var incremets = new List<IncrementStockDTO>()
         {
             new IncrementStockDTO { ItemId = 1, Quantity = 5 }
         };
         var incrementCommand = new IncrementStockCommand(incremets);
-        await mediator.Send(incrementCommand, default);
+		var incrementHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<IncrementStockCommand>>();
+		await incrementHandler.Handle(incrementCommand, default);
         var decremets = new List<DecrementStockDTO>()
         {
             new DecrementStockDTO { ItemId = 1, Quantity = 10 }
         };
         var decrementCommand = new DecrementStockCommand(decremets);
-        await Assert.ThrowsAsync<Exception>(async () => await mediator.Send(decrementCommand, default));
+		var decrementHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<DecrementStockCommand>>();
+		await Assert.ThrowsAsync<Exception>(async () => await decrementHandler.Handle(decrementCommand, default));
 	}
 }

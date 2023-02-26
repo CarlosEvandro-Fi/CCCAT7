@@ -5,7 +5,7 @@ public interface IOrderQuery
     Task<OrderDTO> GetByGuid(string guid);
     Task<OrderDTO> GetByGuid2(string guid);
     Task<OrderDTO> GetProjectionByGuid(string guid);
-    Task<OrderDTO> SaveOrderProjection(string guid, object order);
+    Task<OrderDTO> SaveOrderProjection(string guid, OrderDTO order);
     Task<OrderDTO> GetOrderProjection(string guid);
 }
 

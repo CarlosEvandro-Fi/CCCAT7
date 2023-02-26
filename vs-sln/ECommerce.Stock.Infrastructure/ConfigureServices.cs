@@ -1,7 +1,6 @@
 ﻿using ECommerce.Stock.Application;
 using ECommerce.Stock.Domain;
 using ECommerce.Stock.Infrastructure.Database;
-using ECommerce.Stock.Infrastructure.Mediators;
 using ECommerce.Stock.Infrastructure.Queue;
 using ECommerce.Stock.Infrastructure.Repository.Database;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +11,6 @@ public static class ConfigureServicesExtension
 {
     public static IServiceCollection ConfigureServices(this IServiceCollection services)
     {
-        services.AddTransient<IMediator, Mediator>();
         services.AddTransient<GetStock>();
         services.AddTransient<IQueryHandler<GetStockQuery, Int32>, GetStockQueryHandler>();
         services.AddTransient<IncrementStock>();

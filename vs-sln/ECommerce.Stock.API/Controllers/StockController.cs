@@ -1,4 +1,5 @@
 ﻿using ECommerce.Stock.Application;
+using ECommerce.Stock.Domain;
 
 namespace ECommerce.Stock.API.Controllers;
 
@@ -6,29 +7,27 @@ namespace ECommerce.Stock.API.Controllers;
 [ApiController]
 public sealed class StockController : ControllerBase
 {
-    public IMediator Mediator { get; }
-
-    public StockController(IMediator iMediator) => Mediator = iMediator;
-    
-
     [HttpPost("DecrementStock")]
-    public async Task<IActionResult> Decrement([FromBody] IEnumerable<DecrementStockDTO> decremets)
-    {
-        await Mediator.Send(new DecrementStockCommand(decremets), default(CancellationToken));
+    public async Task<IActionResult> Decrement([FromBody] IEnumerable<DecrementStockDTO> decremets,
+		[FromServices] ICommandHandler<DecrementStockCommand> handler)
+	{
+        await handler.Handle(new DecrementStockCommand(decremets), default(CancellationToken));
         return Ok();
     }
 
     [HttpPost("IncrementStock")]
-    public async Task<IActionResult> Increment([FromBody] IEnumerable<IncrementStockDTO> incremets)
-    {
-        await Mediator.Send(new IncrementStockCommand(incremets), default(CancellationToken));
+    public async Task<IActionResult> Increment([FromBody] IEnumerable<IncrementStockDTO> incremets,
+		[FromServices] ICommandHandler<IncrementStockCommand> handler)
+	{
+        await handler.Handle(new IncrementStockCommand(incremets), default(CancellationToken));
         return Ok();
     }
 
     [HttpGet("GetStock/{ItemId}")]
-    public async Task<ActionResult<Int32>> Get([FromRoute(Name = "ItemId")] Int32 itemId)
+    public async Task<ActionResult<Int32>> Get([FromRoute(Name = "ItemId")] Int32 itemId,
+        [FromServices] IQueryHandler<GetStockQuery, Int32> handler)
     {
         var query = new GetStockQuery(itemId);
-        return await Mediator.Send<GetStockQuery, Int32>(query, default(CancellationToken));
+        return await handler.Handle(query, default(CancellationToken));
     }
 }
