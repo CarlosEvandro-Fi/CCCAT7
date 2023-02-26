@@ -1,6 +1,9 @@
 ﻿namespace ECommerce.Stock.Application;
 
-public sealed class GetStockQuery : IQuery<Int32>
+public interface IGetStockQueryHandler : IQueryHandler<GetStockQuery, Int32>
+{ }
+
+public sealed class GetStockQuery // : IQuery<Int32>
 {
     public Int32 ItemId { get; }
 
@@ -11,7 +14,7 @@ public sealed class GetStockQuery : IQuery<Int32>
     }
 }
 
-public sealed class GetStockQueryHandler : IQueryHandler<GetStockQuery, Int32>
+public sealed class GetStockQueryHandler : IGetStockQueryHandler
 {
     public GetStock GetStock { get; }
 
@@ -19,6 +22,7 @@ public sealed class GetStockQueryHandler : IQueryHandler<GetStockQuery, Int32>
 
     public async Task<Int32> Handle(GetStockQuery query, CancellationToken cancellation)
     {
+        if (query is null) throw new ArgumentNullException(nameof(query));
         return await GetStock.Execute(query.ItemId);
     }
 }

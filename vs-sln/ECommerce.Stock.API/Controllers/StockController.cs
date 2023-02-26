@@ -25,7 +25,8 @@ public sealed class StockController : ControllerBase
 
     [HttpGet("GetStock/{ItemId}")]
     public async Task<ActionResult<Int32>> Get([FromRoute(Name = "ItemId")] Int32 itemId,
-        [FromServices] IQueryHandler<GetStockQuery, Int32> handler)
+        // [FromServices] IQueryHandler<GetStockQuery, Int32> handler)
+        [FromServices] IGetStockQueryHandler handler)
     {
         var query = new GetStockQuery(itemId);
         return await handler.Handle(query, default(CancellationToken));

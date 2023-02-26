@@ -12,7 +12,8 @@ public static class ConfigureServicesExtension
     public static IServiceCollection ConfigureServices(this IServiceCollection services)
     {
         services.AddTransient<GetStock>();
-        services.AddTransient<IQueryHandler<GetStockQuery, Int32>, GetStockQueryHandler>();
+		// services.AddTransient<IQueryHandler<GetStockQuery, Int32>, GetStockQueryHandler>();
+		services.AddTransient<IGetStockQueryHandler, GetStockQueryHandler>();
         services.AddTransient<IncrementStock>();
         services.AddTransient<ICommandHandler<IncrementStockCommand>, IncrementStockCommandHandler>();
         services.AddTransient<DecrementStock>();

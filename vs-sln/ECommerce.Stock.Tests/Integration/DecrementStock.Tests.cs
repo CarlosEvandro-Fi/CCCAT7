@@ -15,8 +15,9 @@ public class DecrementStock_Tests : IClassFixture<TestingServiceProvider>
 	{
         using var scope = TestingServiceProvider.ServiceProvider.CreateScope();
         var stockEntryRepository = scope.ServiceProvider.GetRequiredService<IStockEntryRepository>();
-        await stockEntryRepository.Clean();
-        var handler = scope.ServiceProvider.GetRequiredService<IQueryHandler<GetStockQuery, Int32>>();
+		// var handlerGetStockQuery = scope.ServiceProvider.GetRequiredService<IQueryHandler<GetStockQuery, Int32>>();
+		var handlerGetStockQuery = scope.ServiceProvider.GetRequiredService<IGetStockQueryHandler>();
+		await stockEntryRepository.Clean();
         var incremets = new List<IncrementStockDTO>()
 		{
 			new IncrementStockDTO { ItemId = 1, Quantity = 10 }
@@ -32,7 +33,7 @@ public class DecrementStock_Tests : IClassFixture<TestingServiceProvider>
 		var decrementHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<DecrementStockCommand>>();
 		await decrementHandler.Handle(decrementCommand, default);
 		var getStockQuery = new GetStockQuery(itemId: 1);
-		var stockCount = await handler.Handle(getStockQuery, default);
+		var stockCount = await handlerGetStockQuery.Handle(getStockQuery, default);
         Assert.Equal(5, stockCount);
 	}
 
