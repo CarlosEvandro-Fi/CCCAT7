@@ -1,9 +1,9 @@
 ﻿namespace ECommerce.Stock.Application;
 
-public interface IGetStockQueryHandler : IQueryHandler<GetStockQuery, Int32>
-{ }
+//public interface IGetStockQueryHandler : IQueryHandler<GetStockQuery, Int32>
+//{ }
 
-public sealed class GetStockQuery // : IQuery<Int32>
+public sealed class GetStockQuery : IQuery<Int32>
 {
     public Int32 ItemId { get; }
 
@@ -14,7 +14,9 @@ public sealed class GetStockQuery // : IQuery<Int32>
     }
 }
 
-public sealed class GetStockQueryHandler : IGetStockQueryHandler
+public sealed class GetStockQueryHandler
+	// : IGetStockQueryHandler
+	: IQueryHandler<GetStockQuery, Int32>
 {
     public GetStock GetStock { get; }
 
